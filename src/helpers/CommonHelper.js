@@ -36,3 +36,5 @@ export const kComma = (number, decPlaces = 1) => {
     }
     return number;
 };
+
+export const pxToRem = (px) => `${px/16}rem`;

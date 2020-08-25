@@ -1,9 +1,9 @@
-import logo from './logo.png'
-import profileHeader from './@profile-header.jpg'
+import mainWaterMark from './mainWaterMark.png'
+import userIcon from './user-icon.jpg'
 
 const Images = {
-    logo,
-    profileHeader,
+    mainWaterMark,
+    userIcon,
 };
 
 export default Images;
