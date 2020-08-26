@@ -7,12 +7,20 @@ import UserBadge from "../UserBadge";
 import HalfWrap from "../HalfWrap/HalfWrap";
 import LeftWrap from "../HalfWrap/LeftWrap";
 import RightWrap from "../HalfWrap/RightWrap";
+import {photosCreators} from "../../../redux/actionCreators";
 
 const Card = (props) => {
-    const {item} = props;
+    const {
+        item
+    } = props;
+
 
     return (
-        <Wrapper className={'masonry-item'}>
+        <Wrapper className={'masonry-item'} onClick={()=>{
+            photosCreators.updateState({selected: item});
+        }}>
+            <Image src={item.urls.small}/>
+
             <Screen>
                 <ButtonWrap gutter={6} align={'flex-end'}>
                     <Button color={'gray'} icon={<BsHeartFill/>}/>
@@ -30,8 +38,6 @@ const Card = (props) => {
                   </RightWrap>
               </HalfWrap>
             </Screen>
-            <Image src={item.urls.small}/>
-
         </Wrapper>
     )
 };
