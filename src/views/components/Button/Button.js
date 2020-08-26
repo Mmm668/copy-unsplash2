@@ -7,6 +7,7 @@ const Button = (props) => {
         color,
         children,
         onClick,
+        filled,
     } = props;
 
     function renderIcon(v){
@@ -14,7 +15,7 @@ const Button = (props) => {
     }
 
     return (
-        <Wrapper color={color} onClick={onClick}>
+        <Wrapper color={color} filled={filled} onClick={onClick}>
             {icon && renderIcon(icon)}
             <Text>{children}</Text>
         </Wrapper>
@@ -40,13 +41,21 @@ const Wrapper = styled.div`
     background: hsla(0,0%,100%,.9);
     color:#767676;
   `}
+  ${props => props.filled && css`
+    border-color: ${props.filled};
+    background: ${props.filled};
+  `}
 `;
 
-const Text = styled.div`
+export const Text = styled.div`
   margin-left: 4px;
   font-size: 13px;
   font-weight: 400;
   color:#111;
+  ${props => props.filled && css`
+    font-weight: 400;
+    color:#fff;
+  `}
 `;
 
 export default Button;
