@@ -1,68 +1,113 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 무료 사진 소스 제공 사이트 Unsplash 카피
 
-## Available Scripts
+👀 [[Unsplash dev api]](https://unsplash.com/developers)
 
-In the project directory, you can run:
+**[Stack]**
+- 현재 store구조 리팩토링 및 Styled-components사용으로 변환 작업 중
+```
+ - Unsplash에서 제공되는 dev api
+ - React, React-router-dom, Scss
+ - Redux, Saga, Axios
+ - server 없는 SPA로, 세부 url로 세부 페이지 접속 시 404
+```
 
-### `yarn start`
+**[현재 작업중인 v2] ✬✬✬**
+- Redux 구조 connect HOC가 아닌 hook
+- 하나로 통합된 것이 아닌, Reducer를 세분화한 store 구조
+- scss 아닌 styled-components를 사용
+- 필요 시 CreatePortal을 사용한 모달
+- RWD (Responsive web design), flex 사용    
+- 세분화된 git commit
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**[구현한 Pages]** Main, PhotoDetail, Search, Collection
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**[Structure]**
+(v2에서 단일 파일로 구성된 구조 보완 예정)
+```
+    |____src
+    | |____scss
+    | | |____components
+    | | | |_____noData.scss
+    | | | |_____photoCard.scss
+    | | | |_____searchBar.scss
+    | | | |_____photos.scss
+    | | |    . . . .
+    | | |____style.scss
+    | | |____pages
+    | | | |_____collections.scss
+    | | | |_____search.scss
+    | | | |_____collectionPhotos.scss
+    | | | |_____home.scss
+    | | |____base
+    | | | |_____reset.scss
+    | | | |_____common.scss
+    | | | |_____color.scss
+    | |____index.js
+    | |____views
+    | | |____components
+    | | | |____NoData.js
+    | | | |____PreLoader.js
+    | | | |____Toast.js
+    | | | |____PhotoCard.js
+    | | |   . . . .
+    | | |____pages
+    | | | |____NotFound.js
+    | | | |____home
+    | | | | |____Home.js
+    | | | |____search
+    | | | | |____Users.js
+    | | | | |____Collections.js
+    | | | | |____Search.js
+    | | | |____randomPhotos
+    | | | | |____RandomPhotos.js
+    | | | |____collections
+    | | | | |____CollectionPhotos.js
+    | | | | |____Collections.js
+    | |____redux
+    | | |____action.js
+    | | |____reducer.js
+    | | |____store.js
+    | | |____saga.js
+    | | |____api.js
+    | |____helpers
+    | | |____FetchHelper.js
+    | | |____HistoryHelper.js
+    | | |____CommonHelper.js
+    | | |____ConstsHelper.js
+    | |____App.js
+```
 
-### `yarn test`
+### ✨ Main
+---
+```
+로드 시 토스트 메세지 / 드랍다운 메뉴
+로드 시 로딩 애니메이션 / 그리드 레이아웃 이미지
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![MainPage](./readmeImages/1.jpg)
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ✨ PhotoDetail
+---
+![PhotoDetail](./readmeImages/2.jpg)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ✨ Search
+---
+![Search](./readmeImages/3-1.jpg)
 
-### `yarn eject`
+### ✨ Search Result
+---
+![Search](./readmeImages/3-2.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### ✨ Collections
+---
+![Search](./readmeImages/3-2.jpg)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**[Learned]**
+- React와 api fetch, fetch 받은 데이터 display가 목적이었으며 완수
+- static한 퍼블리싱 구현에서 페이지 라우팅 경험 / api fetch 처리
+- Redux connect 메소드 구조를 위해 HOC 사용 경험
+- 컴포넌트 단위로 나누어 재사용성을 높일 수 있는 구조 고민
+- 더 나은 ux  코드 가독성을 위해 개선해 나가야 할 방향 파악
