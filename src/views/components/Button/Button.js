@@ -10,27 +10,23 @@ const Button = (props) => {
         filled,
     } = props;
 
-    function renderIcon(v){
-        return v;
-    }
-
     return (
         <Wrapper color={color} filled={filled} onClick={onClick}>
-            {icon && renderIcon(icon)}
-            <Text>{children}</Text>
+            {icon}
+            <Text filled={filled}>{children}</Text>
         </Wrapper>
     )
 };
 
 const Wrapper = styled.div`
-  opacity: 0.8;
+  opacity: 0.7;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   height: 32px;
   padding: 0 11px;
   border-radius: 3px;
-  border:1px solid #767676;
+  border:1px solid #909090;
   background:#fff;
   transition: 0.2s ease-in-out;
   cursor:pointer;
@@ -38,7 +34,7 @@ const Wrapper = styled.div`
     opacity: 1;
   }
   ${props => props.color === 'gray' && css`
-    background: hsla(0,0%,100%,.9);
+    background: #fff;
     color:#767676;
   `}
   ${props => props.filled && css`

@@ -4,7 +4,12 @@ import {BsThreeDots} from "react-icons/all";
 
 const BubbleDropdown = (props) => {
     const {
-        list
+        list =[
+            {
+                text: '',
+                onClick: () => {}
+            }
+        ]
     } = props;
 
     const [visible, setVisible] = useState(false);
@@ -15,7 +20,7 @@ const BubbleDropdown = (props) => {
 
     return (
         <Wrapper onClick={() => setVisible(!visible)}>
-            <BsThreeDots/>
+            <BsThreeDots style={{alignSelf: 'center'}}/>
             <Menu className={visible && 'is-active'}>
                 {
                     list.map((item, index) => <MenuItem
@@ -32,13 +37,14 @@ const BubbleDropdown = (props) => {
 const Wrapper = styled.div`
   position: relative;
   cursor:pointer;
+  display: flex;
 `;
 
 const Menu = styled.div`
   position: absolute;
   z-index: 5;
   top: calc(100% + 7px);
-  right: 10px;
+  right: -17px;
   width: 285px;
   padding: 10px 0;
   transform: scale(0);
