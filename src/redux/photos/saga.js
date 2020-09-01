@@ -1,19 +1,15 @@
-import {Action as API, Action} from "./redux";
-import {delay, put, call, takeLatest, spawn, all} from "@redux-saga/core/effects";
+import {Action} from "./redux";
+import {put, call, takeLatest, all} from "@redux-saga/core/effects";
+import API from "../../api";
+import {photosCreators} from "../actionCreators";
 
 
 export default function* () {
-
     yield all([
-        takeLatest(Action.Types.AUTH_TOUCH, function* () {
-            // const result = yield call(API.authTouch);
-            // if(!result?.data?.googleId) {
-            //     console.log('@@ 로그인 실패');
-            //     return navigate('/login')
-            // }
-            // const user = result.data;
-            // setAccessToken(JSON.stringify(user));
-            // yield put(Action.Creators.updateState({user}))
+        takeLatest(Action.Types.SEARCH_KEYWORD, function* (action) {
+            const result = yield call(API.searchKeyword, action.payload);
+            console.log('@@ result', result); // error, request error 처리
+            yield put(photosCreators.updateState({searchResult: result.data}))
         }),
     ])
 }
