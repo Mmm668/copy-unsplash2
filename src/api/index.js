@@ -1,8 +1,28 @@
 import axios from 'axios';
 
+const fetchEnum = {
+    GET: 'get',
+    POST: 'post',
+    PUT: 'put',
+    DELETE: 'delete',
+
+    APPLICATION_JSON: 'application/json',
+    APPLICATION_X_WWW_FORM_URL_ENCODED: 'application/x-www-form-urlencoded',
+    MULTIPART_FORM_DATA: 'multipart/form-data',
+    TEXT_PLAIN: 'text/plain',
+    SCOPE: "public read_photos write_photos write_likes write_collections",
+};
+
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8080',
-    withCredentials: true
+    baseURL: process.env.REACT_APP_API_BASE_URL,
+    timeout: 12000,
+    // withCredentials: true,
+    headers: {
+        'Accept': fetchEnum.APPLICATION_JSON,
+        'Content-Type': fetchEnum.APPLICATION_JSON,
+        'Authorization': process.env.REACT_APP_ACCESS_KEY,
+        "scope": fetchEnum.SCOPE,
+    }
 });
 
 const request = async (method, url, data) => {
@@ -34,8 +54,8 @@ const request = async (method, url, data) => {
 };
 
 const API = {
-    fetchPost: () => request('get', '/post'),
-    composePost : (data) => request('post', '/post/add', data),
+    fetchPhotos: () => request('get', '/photos'),
+    searchKeyword: (data) => request('get', `/search?page=1&query=${data}`)
 }
 
 export default API
