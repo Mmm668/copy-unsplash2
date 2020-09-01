@@ -1,17 +1,19 @@
 import React, {useState} from 'react';
-import styled, {css} from "styled-components";
-import {headerCategory} from "../../../mock/mock";
+import styled from "styled-components";
 import Header from "./Header";
 import Routes from "../../../Routes";
+import Footer from "./Footer";
 
 const Layout = (props) => {
+
+    const {children} = props;
 
     // store, header on/off
     const [something, setSomething] = useState(true);
 
     function getHeight(dom) {
         // return instead of 118px
-        if(something){
+        if (something) {
             return {paddingTop: '116px'};
         }
         return {paddingTop: '0px'};
@@ -19,10 +21,12 @@ const Layout = (props) => {
 
     return (
         <Wrapper>
+            {children}
             {
-                something && <Header categoryList={headerCategory}/>
+                something && <Header/>
             }
             <Routes style={getHeight()}/>
+            <Footer/>
         </Wrapper>
     )
 };

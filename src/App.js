@@ -4,13 +4,12 @@ import Layout from "./views/components/Layout/Layout";
 function App(props) {
 
     return (
-        <>
-            <Layout/>
+        <Layout>
             {/*{*/}
             {/*    toastMessage &&*/}
             {/*    <Toast message={toastMessage}/>*/}
             {/*}*/}
-        </>
+        </Layout>
     );
 }
 

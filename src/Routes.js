@@ -2,6 +2,9 @@ import React from 'react';
 import styled from "styled-components";
 import {Route, Switch} from "react-router-dom";
 import Home from "./views/pages/home";
+import RandomPhotos from "./views/pages/randomPhotos";
+import Collections from "./views/pages/collections";
+import Search from "./views/pages/search";
 
 const Routes = (props) => {
 
@@ -13,12 +16,12 @@ const Routes = (props) => {
         <Wrapper style={style}>
             <Switch>
                 <Route exact path={'/'} component={Home}/>
-                <Route path={'/random'} component={Home}/>
-                <Route path={'/collections/:id/:title/'} component={Home}/>
-                <Route path={'/collections'} component={Home}/>
-                <Route path={'/search/:type/:keyword'} component={Home}/>
+                <Route path={'/random'} component={RandomPhotos}/>
+                <Route path={'/collections'} component={Collections}/>
+                <Route path={'/search/:type/:keyword'} component={Search}/>
+                {/*<Route path={'/collections/:id/:title/'} component={Home}/>*/}
 
-                <Route path={'/404'} component={Home}/>
+                {/*<Route path={'/404'} component={Home}/>*/}
             </Switch>
         </Wrapper>
     )
