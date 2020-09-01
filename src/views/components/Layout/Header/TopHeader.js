@@ -2,19 +2,16 @@ import React from 'react';
 import styled from "styled-components";
 import SearchBar from "../../SearchBar";
 import BubbleDropdown from "../../BubbleDropdown";
-import {headerBubbleDropdown} from "../../../../mock/mock";
-import Button, {ButtonText} from "../../Button";
-import ConfirmModal from "../../Modal/ConfirmModal";
+import Button from "../../Button";
+import {mock} from "../../../../mock/mock";
+import {HISTORY} from "../../../../helpers/HistoryHelper";
+import ButtonWrap from "../../Button/ButtonWrap";
 
-const MainHeader = (props) => {
-
-    const {
-        categoryList
-    } = props;
+const TopHeader = (props) => {
 
     return (
         <Wrapper>
-            <LogoWrap>
+            <LogoWrap onClick={() => HISTORY.push('/')}>
                 <svg width="32" height="32" className="_1Jlgk" version="1.1" viewBox="0 0 32 32"
                      aria-labelledby="unsplash-home" aria-hidden="false"><title id="unsplash-home">Unsplash Home</title>
                     <path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path>
@@ -31,11 +28,14 @@ const MainHeader = (props) => {
                <div className={'f-link-wrap'}>
                    <div className="f-link">Topics</div>
                    <div className="f-link">Explore</div>
-                   <BubbleDropdown list={headerBubbleDropdown}/>
+                   <BubbleDropdown list={mock.headerBubbleDropdown}/>
                </div>
-               <HeaderButton onClick={() => <ConfirmModal>adsf</ConfirmModal>}>Submit a photo</HeaderButton>
+               <Button>Submit a photo</Button>
                <Bar/>
-               <HeaderButton filled={'#3cb46e'}>Join free</HeaderButton>
+               <ButtonWrap gutter={6}>
+                   <div className="f-link">Login</div>
+                   <Button filled={'#3cb46e'}>Join free</Button>
+               </ButtonWrap>
            </Etc>
 
         </Wrapper>
@@ -52,6 +52,7 @@ const Wrapper = styled.div`
 
 const LogoWrap = styled.div`
   display: flex;
+  cursor:pointer;
 `;
 
 const LogoDesc = styled.div`
@@ -70,14 +71,14 @@ const LogoDesc = styled.div`
 `;
 
 const Etc = styled.div`
-  //flex: 1;
-  //flex-direction: row;
+  display: flex;
   .f-link-wrap{
-    //flex: 1;
-    margin: 0 20px 0 10px;
+    display: flex;
+    //align-items: center;
+    margin: 0 20px 0 0;
   }
   .f-link{
-    //flex: 1;
+    align-self: center;
     opacity: 0.6;
     padding: 0 10px;
     font-size: 15px;
@@ -94,17 +95,9 @@ const Etc = styled.div`
 const Bar = styled.div`
   display: flex;
   width: 1px;
-  height: 100%;
-  margin: 0 20px;
+  //height: 100%; 있으면 안나옴
+  margin: 2px 10px 2px 20px;
   border-left: 1px solid #ddd;
 `;
 
-const HeaderButton = styled(Button)`
-  ${ButtonText} {
-    font-size: 16px;
-    font-weight: 500;
-    color:#fff;
-  }
-`;
-
-export default MainHeader;
+export default TopHeader;

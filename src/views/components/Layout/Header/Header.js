@@ -1,19 +1,26 @@
 import React from 'react';
 import styled from "styled-components";
 import CategoryHeader from "./CategoryHeader";
-import GadgetHeader from "./GadgetHeader";
+import TopHeader from "./TopHeader";
+import {useSelector} from "react-redux";
+import SearchHeader from "./SearchHeader";
+import {mock} from "../../../../mock/mock";
+
+const SubHeaders = {
+    'search' : <SearchHeader/>,
+    'category': <CategoryHeader list={mock.headerCategory}/>,
+    'none' : false // ?
+}
 
 const Header = (props) => {
 
-    const {
-        categoryList
-    } = props;
+    const {headerType} = useSelector(state => state.app);
 
     return (
         <Wrapper>
-            <GadgetHeader/>
+            <TopHeader/>
             {
-                categoryList.length > 0 && <CategoryHeader list={categoryList}/>
+                SubHeaders[headerType]
             }
         </Wrapper>
     )
