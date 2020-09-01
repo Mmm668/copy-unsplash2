@@ -1,17 +1,14 @@
 const initialState = {
     user: null,
     toastMessage: '',
-    modalOpen: {
-        compose: false,
-    },
-    currentHeader: null,
+    headerType: 'category',
 };
 
 export const Action = {
     Types: {
         UPDATE_STATE: '@APP/UPDATE_STATE',
         AUTH_TOUCH: "AUTH_TOUCH",
-        LOGOUT: "LOGOUT"
+        LOGOUT: "LOGOUT",
     },
     Creators:{
         updateState: (payload) => ({

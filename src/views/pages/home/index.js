@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import CardWrapper from "../../components/Card/CardWrapper";
 import MainCover from "./components/MainCover";
+import {appCreators} from "../../../redux/actionCreators";
 
 const list = [
     {
@@ -645,6 +646,13 @@ const list = [
 ]
 
 const Home = (props) => {
+
+    useEffect(() => {
+        appCreators.updateState({headerType: 'category'})
+        // return () => {
+        //     appCreators.updateState({headerType: 'none'})
+        // }
+    }, [])
 
     return (
         <Wrapper>
