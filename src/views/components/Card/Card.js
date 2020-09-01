@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import Button from "../Button";
-import {AiOutlinePlus, BsHeartFill} from "react-icons/all";
+import {AiOutlineArrowDown, FiPlus, BsHeartFill} from "react-icons/all";
 import ButtonWrap from "../Button/ButtonWrap";
 import UserBadge from "../UserBadge";
 import HalfWrap from "../HalfWrap/HalfWrap";
@@ -16,36 +16,49 @@ const Card = (props) => {
 
 
     return (
-        <Wrapper className={'masonry-item'} onClick={()=>{
+        <Wrapper className={'masonry-item'} onClick={() => {
             photosCreators.updateState({selected: item});
         }}>
             <Image src={item.urls.small}/>
 
             <Screen>
                 <ButtonWrap gutter={6} align={'flex-end'}>
-                    <Button color={'gray'} icon={<BsHeartFill/>}/>
-                    <Button color={'gray'} icon={<AiOutlinePlus/>}/>
+                    <Button color={'gray'}
+                            icon={<BsHeartFill/>}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                console.log('@@ clickInnerButton')
+                            }}
+                    />
+                    <Button color={'gray'}
+                            icon={<FiPlus/>}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                console.log('@@ clickInnerButton')
+                            }}
+                    />
                 </ButtonWrap>
 
-              <HalfWrap>
-                  <LeftWrap>
-                      <UserBadge/>
-                  </LeftWrap>
-                  <RightWrap>
-                      <ButtonWrap gutter={6} align={'flex-end'}>
-                          <Button color={'gray'} icon={<BsHeartFill/>}/>
-                      </ButtonWrap>
-                  </RightWrap>
-              </HalfWrap>
+                <HalfWrap>
+                    <LeftWrap>
+                        <UserBadge src={item.user.profile_image.small} name={item.user.name}/>
+                    </LeftWrap>
+                    <RightWrap>
+                        <ButtonWrap gutter={6} align={'flex-end'}>
+                            <Button color={'gray'}
+                                    icon={<AiOutlineArrowDown/>}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        console.log('@@ clickInnerButton')
+                                    }}
+                            />
+                        </ButtonWrap>
+                    </RightWrap>
+                </HalfWrap>
             </Screen>
         </Wrapper>
     )
 };
-
-const Wrapper = styled.div`
-  position: relative;
-  margin: 10px 0;
-`;
 
 const Screen = styled.div`
   position: absolute;
@@ -54,19 +67,28 @@ const Screen = styled.div`
   left: 0;
   right: 0;
   z-index: 2;
-  opacity: 1;
+  opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 15px 20px 20px;
   background: rgba(0,0,0, .15);
-  background: radial-gradient(transparent 60%, rgba(0,0,0, .3));
+  //background: radial-gradient(transparent 60%, rgba(0,0,0, .3));
   transition:0.2s ease-in-out;
   cursor:pointer;
+`;
+
+const Wrapper = styled.div`
+  position: relative;
+  margin: 10px 0;
+  cursor:pointer;
   &:hover{
-    opacity: 1;
+    ${Screen} {
+      opacity: 1;
+    }
   }
 `;
+
 
 const Image = styled.img`
 `;

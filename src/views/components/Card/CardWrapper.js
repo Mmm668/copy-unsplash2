@@ -15,9 +15,10 @@ const CardWrapper = (props) => {
 
     useEffect(() => {
         new Masonry( '.masonry-grid', {
+            fitWidth: true,
             itemSelector: '.masonry-item',
             horizontalOrder : true,
-            gutter: 20
+            gutter: 20,
         })
     }, [])
 
@@ -32,7 +33,7 @@ const CardWrapper = (props) => {
 };
 
 const Wrapper = styled.div`
-  max-width: 1240px;
+  width: 1240px;
   margin: -10px auto;
   //display: grid;
   //grid-template-columns: repeat(3, 1fr);
