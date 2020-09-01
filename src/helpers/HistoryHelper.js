@@ -1,9 +1,6 @@
-import {createHashHistory} from 'history';
-import {BASE_LINE} from "./ConstsHelper";
+import {createBrowserHistory} from 'history';
 
-export const HISTORY = createHashHistory({
-    basename: BASE_LINE
-});
+export const HISTORY = createBrowserHistory();
 
 export const navigate = url => {
     HISTORY.push(url);
