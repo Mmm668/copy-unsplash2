@@ -31,7 +31,8 @@ const Collection = (props) => {
 
     return (
         <Wrapper>
-            <Head src={collection?.cover_photo.urls.regular}>
+            <Head>
+                <HeadBackground src={collection?.cover_photo.urls.regular}/>
                 <PageTitle title={collection?.title}/>
                 <Desc>
                     {collection?.description}
@@ -56,15 +57,26 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 const Head = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 50px 30px 67px;
+`;
+const HeadBackground = styled.div`
+  opacity: 0.7;
+   filter: grayscale(50%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
   background-image:url(${props => props.src});
   background-position:50% 0;
   background-size: cover;
   background-repeat: no-repeat;
-  -webkit-mask-image: linear-gradient(rgba(0,0,0,1) 80%, rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
   -webkit-mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
 `;
