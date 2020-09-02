@@ -1,32 +1,41 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
 import Card from "./Card";
-import Masonry from 'masonry-layout'
+import Masonry from 'masonry-layout';
 import {useSelector} from "react-redux";
 import ModalDetail from "./ModalDetail";
+import * as imagesloaded from "imagesloaded";
 
+let msnry;
 const CardWrapper = (props) => {
     const {
         list,
         style
     } = props;
 
-    const {selected} = useSelector(state => state.photos);
+    const {selectedPhoto} = useSelector(state => state.photos);
 
     useEffect(() => {
-        new Masonry( '.masonry-grid', {
-            fitWidth: true,
-            itemSelector: '.masonry-item',
-            horizontalOrder : true,
-            gutter: 20,
+        imagesloaded('.masonry-grid', function () {
+            msnry = new Masonry('.masonry-grid', {
+                itemSelector: '.masonry-item',
+                columnWidth: 375,
+                gutter: 20,
+                fitWidth: true,
+                horizontalOrder: true,
+            })
         })
     }, [])
 
     return (
         <Wrapper className={'masonry-grid'} style={style}>
-            <ModalDetail item={selected}/>
+            {/*<div className={'masonry-grid-sizer'}/>*/}
+            {/*<div className="masonry-gutter-sizer"/>*/}
             {
-                list.map((item, index) => <Card item={item} key={index}/>)
+                list?.map((item, index) => <Card item={item} key={index}/>)
+            }
+            {
+                selectedPhoto && <ModalDetail item={selectedPhoto}/>
             }
         </Wrapper>
     )

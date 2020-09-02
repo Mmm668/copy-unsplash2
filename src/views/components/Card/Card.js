@@ -8,26 +8,26 @@ import HalfWrap from "../HalfWrap/HalfWrap";
 import LeftWrap from "../HalfWrap/LeftWrap";
 import RightWrap from "../HalfWrap/RightWrap";
 import {photosCreators} from "../../../redux/actionCreators";
+import Modal from "../Modal/Modal";
 
 const Card = (props) => {
     const {
         item
     } = props;
 
-
     return (
         <Wrapper className={'masonry-item'} onClick={() => {
-            photosCreators.updateState({selected: item});
+            photosCreators.updateState({selectedPhoto: item});
         }}>
-            <Image src={item.urls.small}/>
+            <img src={item.urls.small}/>
 
+            {/*<Modal isVisible={true} onClick={()=>{console.log('@@ ...')}}>기능을 준비중입니다.</Modal>*/}
             <Screen>
                 <ButtonWrap gutter={6} align={'flex-end'}>
                     <Button color={'gray'}
                             icon={<BsHeartFill/>}
                             onClick={(e) => {
                                 e.stopPropagation();
-                                console.log('@@ clickInnerButton')
                             }}
                     />
                     <Button color={'gray'}
@@ -80,17 +80,17 @@ const Screen = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
+  width: 375px;
   margin: 10px 0;
   cursor:pointer;
+  img{
+    width: 100%;
+  }
   &:hover{
     ${Screen} {
       opacity: 1;
     }
   }
-`;
-
-
-const Image = styled.img`
 `;
 
 export default Card;
