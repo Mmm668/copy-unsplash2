@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import {photosCreators} from "../../../../redux/actionCreators";
+import {navigate} from "../../../../helpers/HistoryHelper";
 
 const CategoryHeader = (props) => {
 
@@ -14,13 +16,17 @@ const CategoryHeader = (props) => {
                 <Linker to={'/random'}>
                     <LinkerText>Random</LinkerText>
                 </Linker>
-                <Linker to={'/collections'}>
+                <Linker to={'/collection'}>
                     <LinkerText>collections</LinkerText>
                 </Linker>
                 <Bar/>
                 {
-                    // `env.process.baseUrl/${item.id}` ....
-                    list.map((item, index) => <Linker to={`/${item.id}`} key={index}>
+                    list.map((item, index) => <Linker
+                        onClick={() => {
+                            photosCreators.updateState({selectedCollectionId: item.id})
+                            navigate(`/collection/${item.id}/`)
+                        }}
+                        key={index}>
                         <LinkerText>{item.title}</LinkerText>
                     </Linker>)
                 }
@@ -58,7 +64,7 @@ const LinkerWrap = styled.div`
   white-space: nowrap;
 `;
 
-const Linker = styled(Link)`
+const Linker = styled.div`
   opacity: 0.6;
   display: inline-flex;
   align-items: center;

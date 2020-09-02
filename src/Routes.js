@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from "styled-components";
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import Home from "./views/pages/home";
 import RandomPhotos from "./views/pages/randomPhotos";
-import Collections from "./views/pages/collections";
+import Collection from "./views/pages/collection";
 import Search from "./views/pages/search";
+import Page404 from "./views/pages/Erros/Page404";
 
 const Routes = (props) => {
 
@@ -17,11 +18,12 @@ const Routes = (props) => {
             <Switch>
                 <Route exact path={'/'} component={Home}/>
                 <Route path={'/random'} component={RandomPhotos}/>
-                <Route path={'/collections'} component={Collections}/>
+                <Route path={'/collection/:id'} component={Collection}/>
                 <Route path={'/search/:type/:keyword'} component={Search}/>
-                {/*<Route path={'/collections/:id/:title/'} component={Home}/>*/}
+                {/*<Route path={'/collection/:id/:title/'} component={Home}/>*/}
 
-                {/*<Route path={'/404'} component={Home}/>*/}
+                <Route path={'/404'} component={Page404}/>
+                <Redirect to={'/404'}></Redirect>
             </Switch>
         </Wrapper>
     )

@@ -55,7 +55,9 @@ const request = async (method, url, data) => {
 
 const API = {
     fetchPhotos: () => request('get', '/photos'),
-    searchKeyword: (data) => request('get', `/search?page=1&query=${data}`)
+    searchKeyword: (keyword) => request('get', `/search?page=1&query=${keyword}`),
+    fetchCollection: (id) => request('get', `/collections/${id}`),
+    fetchCollectionPhotos: (id) => request('get', `/collections/${id}/photos`),
 }
 
 export default API

@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from "styled-components";
 
-const Collections = (props) => {
+const Loading = (props) => {
 
     return (
         <Wrapper>
-           Collections
+           Loading...
         </Wrapper>
     )
 };
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
 `;
 
-export default Collections;
+export default Loading;

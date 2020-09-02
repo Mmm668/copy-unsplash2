@@ -55,7 +55,6 @@ const SearchHeader = (props) => {
             <Body className={'no-scroll'}>
                 {
                     counts.map(item => <SearchHeaderItem item={item} isActive={urlPath.indexOf(item.text) > 0}/>)
-                //
                 }
             </Body>
         </Wrapper>
