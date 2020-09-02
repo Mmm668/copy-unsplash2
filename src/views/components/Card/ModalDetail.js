@@ -22,15 +22,11 @@ const ModalDetail = (props) => {
         item
     } = props;
 
-    // close when item(store - selected) is cleared
-    if (!item) {
-        return false;
-    }
 
     return (
         <Wrapper>
             <WindowWrap>
-                <ButtonClose onClick={() => photosCreators.updateState({selected: undefined})}>
+                <ButtonClose onClick={() => photosCreators.updateState({selectedPhoto: undefined})}>
                     <VscChromeClose/>
                 </ButtonClose>
                 <ButtonTo side={'left'}>
