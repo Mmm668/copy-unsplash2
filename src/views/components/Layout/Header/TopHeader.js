@@ -34,7 +34,7 @@ const TopHeader = (props) => {
                <Bar/>
                <ButtonWrap gutter={6}>
                    <div className="f-link">Login</div>
-                   <Button filled={'#3cb46e'}>Join free</Button>
+                   <Button filled={'#3cb46e'} fontSize={16} opacity={1}>Join free</Button>
                </ButtonWrap>
            </Etc>
 

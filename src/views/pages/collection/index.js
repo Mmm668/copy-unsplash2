@@ -62,7 +62,7 @@ const Head = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 50px 30px 35px;
+  padding: 59px 30px 18px;
 `;
 const HeadBackground = styled.div`
   opacity: 0.7;
