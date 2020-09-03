@@ -19,7 +19,7 @@ const Card = (props) => {
         <Wrapper className={'masonry-item'} onClick={() => {
             photosCreators.updateState({selectedPhoto: item});
         }}>
-            <img src={item.urls.small}/>
+            <Image src={item.urls.small}/>
 
             {/*<Modal isVisible={true} onClick={()=>{console.log('@@ ...')}}>기능을 준비중입니다.</Modal>*/}
             <Screen>
@@ -83,14 +83,14 @@ const Wrapper = styled.div`
   width: 375px;
   margin: 10px 0;
   cursor:pointer;
-  img{
-    width: 100%;
-  }
   &:hover{
     ${Screen} {
       opacity: 1;
     }
   }
+`;
+const Image = styled.img`
+  width: 100%;
 `;
 
 export default Card;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled, {css} from "styled-components";
 import HalfWrap from "../HalfWrap/HalfWrap";
 import LeftWrap from "../HalfWrap/LeftWrap";
@@ -16,12 +16,20 @@ import ButtonWrap from "../Button/ButtonWrap";
 import Button from "../Button";
 import {photosCreators} from "../../../redux/actionCreators";
 
-const ModalDetail = (props) => {
+const ModalDetail = ({item}) => {
 
-    const {
-        item
-    } = props;
+    const image = useRef(null);
+    const [imageStyle, setImageStyle] = useState(null);
 
+    useEffect(()=>{
+        const width = image.current.clientWidth;
+        const height = image.current.clientHeight;
+        if(width / height > 1){ // horizontal
+            setImageStyle({maxWidth: 'calc((100vh - 175px)*1.5)'})
+        } else  {
+            setImageStyle({maxWidth: 'calc((100vh - 175px)*0.7)'})
+        }
+    },[])
 
     return (
         <Wrapper>
@@ -56,7 +64,7 @@ const ModalDetail = (props) => {
                         </RightWrap>
                     </HalfWrap>
                     <ImageWrap>
-                        <Image src={item.urls.regular}/>
+                        <Image src={item.urls.regular} ref={image} style={imageStyle}/>
                     </ImageWrap>
                     <HalfWrap>
                         {/*<LeftWrap></LeftWrap>*/}
@@ -67,7 +75,6 @@ const ModalDetail = (props) => {
                         </RightWrap>
                     </HalfWrap>
                 </ContentWrap>
-
             </WindowWrap>
         </Wrapper>
     )
@@ -129,13 +136,14 @@ const ContentWrap = styled.div`
 `;
 const ImageWrap = styled.div`
   display: flex;
-  flex-grow: 1;
+  justify-content: center;
   padding: 25px 60px;
   background:pink;
 `;
 const Image = styled.img`
-  //width: 100%;
-  height: 100%;
+  //max-width: calc((100vh - 175px)*0.6);
+  // mixin으로 계산해야함 
+  // ${props => props.style}
 `;
 
 export default ModalDetail;
