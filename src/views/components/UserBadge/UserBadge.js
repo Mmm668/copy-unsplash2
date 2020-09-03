@@ -9,13 +9,14 @@ const UserBadge = (props) => {
         name,
         sub,
         style,
+        font,
     } = props;
 
     return (
         <Wrapper style={style}>
            <Thumb src={src}/>
             <Desc>
-                <Name mode={mode}>{name}</Name>
+                <Name mode={mode} style={font}>{name}</Name>
                 <Sub mode={mode}>{sub}</Sub>
             </Desc>
         </Wrapper>

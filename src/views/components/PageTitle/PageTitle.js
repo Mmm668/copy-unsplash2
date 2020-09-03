@@ -13,7 +13,7 @@ const PageTitle = (props) => {
 };
 
 const Wrapper = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   font-size: 46px;
   font-weight: 900;
   color:#111;

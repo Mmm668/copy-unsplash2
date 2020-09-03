@@ -38,7 +38,8 @@ const Collection = (props) => {
                     {collection?.description}
                 </Desc>
                 <UserBadge src={collection?.user.profile_image.small} name={collection?.user.name}
-                           style={{marginBottom: '25px'}}
+                           style={{marginBottom: '70px'}}
+                           font={{fontSize: '18px', fontWeight: 500}}
                 />
 
                 <Count>
@@ -61,7 +62,7 @@ const Head = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 50px 30px 67px;
+  padding: 50px 30px 35px;
 `;
 const HeadBackground = styled.div`
   opacity: 0.7;
