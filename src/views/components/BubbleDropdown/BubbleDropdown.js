@@ -1,25 +1,50 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import {BsThreeDots} from "react-icons/all";
 
 const BubbleDropdown = (props) => {
+
     const {
-        list =[
+        list = [
             {
                 text: '',
-                onClick: () => {}
+                onClick: () => {
+                }
             }
         ]
     } = props;
 
+    const dom = useRef(null);
     const [visible, setVisible] = useState(false);
 
-    if(!list){
+    function handleClickOutside(e){
+        const domNode = dom.current;
+
+        // (!domNode || !domNode.contains(e.target)) ? setVisible(false) : setVisible(true)
+
+        if(!domNode || !domNode.contains(e.target)) {
+            console.log('@@ clicked outside');
+            setVisible(false)
+        } else{
+            console.log('@@ right area?');
+            setVisible(true)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside, true);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true);
+        }
+    }, [])
+
+    if (!list) {
         return false;
     }
 
     return (
-        <Wrapper onClick={() => setVisible(!visible)}>
+        <Wrapper ref={dom}>
             <BsThreeDots style={{alignSelf: 'center'}}/>
             <Menu className={visible && 'is-active'}>
                 {

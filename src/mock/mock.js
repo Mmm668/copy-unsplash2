@@ -1,4 +1,7 @@
 import {navigate} from "../helpers/HistoryHelper";
+import Modal from "../views/components/Modal/Modal";
+import React from 'react';
+import ReactDOM from "react-dom";
 
 export const mock = {
     headerCategory : [
@@ -90,39 +93,43 @@ export const mock = {
     headerBubbleDropdown : [
         {
             text: 'About',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
+            // onClick: () => ReactDOM.render(
+            //     <Modal>
+            //         <p>preparing service...</p>
+            //     </Modal>, document.getElementById('portal-modal'))
         },
         {
             text: 'Wallpapers',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
         },
         {
             text: 'Blog',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
         },
         {
             text: 'Collections',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
         },
         {
             text: 'Community',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
         },
         {
             text: 'History',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
         },
         {
             text: 'Made with Unsplash',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
         },
         {
             text: 'API/Developers',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
         },
         {
             text: 'Official Apps',
-            onClick: () => navigate('/about')
+            onClick: () => alert('준비중입니다.\n 다른 곳을 클릭하여 드롭메뉴를 꺼주세요.'),
         },
     ],
     cardPhotoList : [
