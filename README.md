@@ -78,11 +78,11 @@
 ```
 
 ### ✨ Main
----
 ```
 로드 시 토스트 메세지 / 드랍다운 메뉴
 로드 시 로딩 애니메이션 / 그리드 레이아웃 이미지
 ```
+---
 
 ![MainPage](./readmeImages/1.jpg)
 
@@ -102,10 +102,10 @@
 
 ### ✨ Collections
 ---
-![Search](./readmeImages/3-2.jpg)
+![Search](./readmeImages/4.jpg)
 
 
-**[Learned]**
+**[Gained]**
 - React와 api fetch, fetch 받은 데이터 display가 목적이었으며 완수
 - static한 퍼블리싱 구현에서 페이지 라우팅 경험 / api fetch 처리
 - Redux connect 메소드 구조를 위해 HOC 사용 경험
