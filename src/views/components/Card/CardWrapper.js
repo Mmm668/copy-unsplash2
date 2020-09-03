@@ -5,6 +5,8 @@ import Masonry from 'masonry-layout';
 import {useSelector} from "react-redux";
 import ModalDetail from "./ModalDetail";
 import * as imagesloaded from "imagesloaded";
+import ModalPortal from "../Modal/ModalPortal";
+import Modal from "../Modal/Modal";
 
 let msnry;
 const CardWrapper = (props) => {
@@ -35,7 +37,10 @@ const CardWrapper = (props) => {
                 list?.map((item, index) => <Card item={item} key={index}/>)
             }
             {
-                selectedPhoto && <ModalDetail item={selectedPhoto}/>
+                selectedPhoto &&
+                <ModalPortal>
+                    <ModalDetail item={selectedPhoto}/>
+                </ModalPortal>
             }
         </Wrapper>
     )

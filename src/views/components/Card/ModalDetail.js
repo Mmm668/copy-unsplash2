@@ -75,8 +75,10 @@ const ModalDetail = (props) => {
 
 const Wrapper = styled.div`
   position: fixed;
+  overflow:scroll;
   top: 0;
   bottom: 0;
+  //height: 100%;
   left: 0;
   right: 0;
   z-index: 20;
@@ -84,23 +86,23 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 32px 70px 100px;
 `;
 
 const WindowWrap = styled.div`
-  position: absolute;
-  top: 50px;
-  bottom: 0;
-  width: 90%;
+  width: 100%;
+  height: 100%;
   padding: 20px 20px;
   border-radius: 3px 3px 0 0;
   background: #fff;
 `;
 
 const ButtonClose = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 2;
-  top: -27px;
-  left: -41px;
+  top: 0;
+  left: 0;
+  margin: 16px;
   font-size: 30px;
   color:#f1f1f1;
   cursor:pointer;
