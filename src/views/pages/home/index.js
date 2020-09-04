@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import CardWrapper from "../../components/Card/CardWrapper";
+import CardWrapper from "../../../components/Card/CardWrapper";
 import MainCover from "./components/MainCover";
 import {mock} from "../../../mock/mock";
 import {appCreators} from "../../../redux/actionCreators";

@@ -4,7 +4,7 @@ import CategoryHeader from "./CategoryHeader";
 import TopHeader from "./TopHeader";
 import {useSelector} from "react-redux";
 import SearchHeader from "./SearchHeader";
-import {mock} from "../../../../mock/mock";
+import {mock} from "../../../mock/mock";
 
 const SubHeaders = {
     'search' : <SearchHeader/>,

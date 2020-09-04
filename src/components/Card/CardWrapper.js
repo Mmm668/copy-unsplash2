@@ -6,36 +6,63 @@ import {useSelector} from "react-redux";
 import ModalDetail from "./ModalDetail";
 import * as imagesloaded from "imagesloaded";
 import ModalPortal from "../Modal/ModalPortal";
-import Modal from "../Modal/Modal";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Loading from "../Loading/Loading";
+import Footer from "../Layout/Footer";
 
+let grid;
 let msnry;
+let imgLoad;
 const CardWrapper = (props) => {
     const {
         list,
-        style
+        style,
+        fetchMore = () => {},
+        hasMore,
     } = props;
 
     const {selectedPhoto} = useSelector(state => state.photos);
 
     useEffect(() => {
-        imagesloaded('.masonry-grid', function () {
-            msnry = new Masonry('.masonry-grid', {
-                itemSelector: '.masonry-item',
-                columnWidth: 375,
-                gutter: 20,
-                fitWidth: true,
-                horizontalOrder: true,
-            })
-        })
+        grid = document.querySelector('.masonry-grid');
+        if(list){
+            imagesloaded(grid, function () {
+                msnry = new Masonry(grid, {
+                    itemSelector: '.masonry-item',
+                    columnWidth: 375,
+                    gutter: 20,
+                    fitWidth: true,
+                    horizontalOrder: true,
+                })
+            });
+        }
     }, [])
+
+    if(!list){
+        return <Loading/>
+    }
 
     return (
         <Wrapper className={'masonry-grid'} style={style}>
             {/*<div className={'masonry-grid-sizer'}/>*/}
             {/*<div className="masonry-gutter-sizer"/>*/}
+
+
             {
                 list?.map((item, index) => <Card item={item} key={index}/>)
             }
+
+            <InfiniteScroll
+                dataLength={list?.length}
+                next={fetchMore}
+                hasMore={hasMore}
+                scrollThreshold={0.7}
+                loader={<Loading/>}
+                onScroll={()=> console.log('@@ 뭥쟈ㅣㄴ짜',)}
+                endMessage={<Footer/>}
+            >
+            </InfiniteScroll>
+
             {
                 selectedPhoto &&
                 <ModalPortal>

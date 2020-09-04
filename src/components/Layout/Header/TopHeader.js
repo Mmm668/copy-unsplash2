@@ -3,8 +3,8 @@ import styled from "styled-components";
 import SearchBar from "../../SearchBar";
 import BubbleDropdown from "../../BubbleDropdown";
 import Button from "../../Button";
-import {mock} from "../../../../mock/mock";
-import {HISTORY} from "../../../../helpers/HistoryHelper";
+import {mock} from "../../../mock/mock";
+import {HISTORY} from "../../../helpers/HistoryHelper";
 import ButtonWrap from "../../Button/ButtonWrap";
 
 const TopHeader = (props) => {

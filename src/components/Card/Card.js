@@ -7,7 +7,7 @@ import UserBadge from "../UserBadge";
 import HalfWrap from "../HalfWrap/HalfWrap";
 import LeftWrap from "../HalfWrap/LeftWrap";
 import RightWrap from "../HalfWrap/RightWrap";
-import {photosCreators} from "../../../redux/actionCreators";
+import {photosCreators} from "../../redux/actionCreators";
 import Modal from "../Modal/Modal";
 
 const Card = (props) => {

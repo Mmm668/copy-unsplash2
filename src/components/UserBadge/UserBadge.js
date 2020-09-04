@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css} from "styled-components";
-import Images from "../../../assets/image";
+import Images from "../../assets/image";
 
 const UserBadge = (props) => {
     const {

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import Header from "./Header";
-import Routes from "../../../Routes";
+import Routes from "../../Routes";
 import Footer from "./Footer";
 
 const Layout = (props) => {
@@ -26,7 +26,7 @@ const Layout = (props) => {
                 something && <Header/>
             }
             <Routes style={getHeight()}/>
-            <Footer/>
+            {/*<Footer/>*/}
         </Wrapper>
     )
 };

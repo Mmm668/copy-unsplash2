@@ -1,5 +1,5 @@
 import {navigate} from "../helpers/HistoryHelper";
-import Modal from "../views/components/Modal/Modal";
+import Modal from "../components/Modal/Modal";
 import React from 'react';
 import ReactDOM from "react-dom";
 

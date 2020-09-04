@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import {photosCreators} from "../../../../redux/actionCreators";
-import {navigate} from "../../../../helpers/HistoryHelper";
+import {photosCreators} from "../../../redux/actionCreators";
+import {navigate} from "../../../helpers/HistoryHelper";
 
 const CategoryHeader = (props) => {
 

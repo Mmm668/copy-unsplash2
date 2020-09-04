@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Layout from "./views/components/Layout/Layout";
+import Layout from "./components/Layout/Layout";
 
 function App(props) {
 

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import styled, {css} from "styled-components";
 import {FiLayers, HiPhotograph, IoMdPeople} from "react-icons/all";
-import {navigate} from "../../../../helpers/HistoryHelper";
-import {kComma} from "../../../../helpers/CommonHelper";
+import {navigate} from "../../../helpers/HistoryHelper";
+import {kComma} from "../../../helpers/CommonHelper";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import SearchHeaderItem from "./SearchHeaderItem";

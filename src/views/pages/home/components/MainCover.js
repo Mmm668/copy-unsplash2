@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import Images from "../../../../assets/image";
-import SearchBar from "../../../components/SearchBar";
+import SearchBar from "../../../../components/SearchBar";
 
 const MainCover = (props) => {
 

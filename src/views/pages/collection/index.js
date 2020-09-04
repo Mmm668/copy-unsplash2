@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import CardWrapper from "../../components/Card/CardWrapper";
+import CardWrapper from "../../../components/Card/CardWrapper";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {photosCreators} from "../../../redux/actionCreators";
-import Loading from "../../components/Loading/Loading";
-import UserBadge from "../../components/UserBadge";
-import PageTitle from "../../components/PageTitle";
+import Loading from "../../../components/Loading/Loading";
+import UserBadge from "../../../components/UserBadge";
+import PageTitle from "../../../components/PageTitle";
+import CardWrapper2 from "../../../components/Card/CardWrapper2";
 
 const Collection = (props) => {
 

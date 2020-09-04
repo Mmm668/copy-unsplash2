@@ -14,7 +14,7 @@ import {
 import UserBadge from "../UserBadge";
 import ButtonWrap from "../Button/ButtonWrap";
 import Button from "../Button";
-import {photosCreators} from "../../../redux/actionCreators";
+import {photosCreators} from "../../redux/actionCreators";
 
 const ModalDetail = ({item}) => {
 

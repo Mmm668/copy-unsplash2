@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "../../../components/PageTitle";
 import {useSelector} from "react-redux";
 import {appCreators} from "../../../redux/actionCreators";
-import NoData from "../../components/Errors/NoData";
+import NoData from "../../../components/Errors/NoData";
 
 const Search = (props) => {
 
