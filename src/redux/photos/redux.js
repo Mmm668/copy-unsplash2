@@ -1,4 +1,3 @@
-
 const initialState = {
     selectedPhoto: undefined,// mock.cardPhotoList[1]
 
@@ -13,6 +12,7 @@ const initialState = {
 export const Action = {
     Types: {
         UPDATE_STATE: '@PHOTOS/UPDATE_STATE',
+
         SEARCH_KEYWORD: '@PHOTOS/SEARCH_KEYWORD',
 
         FETCH_COLLECTION: '@PHOTOS/FETCH_COLLECTION',
@@ -23,7 +23,7 @@ export const Action = {
             type: Action.Types.UPDATE_STATE,
             payload
         }),
-        searchKeyword : (payload) => ({
+        searchKeyword: (payload) => ({
             type: Action.Types.SEARCH_KEYWORD,
             payload
         }),
@@ -31,10 +31,15 @@ export const Action = {
             type: Action.Types.FETCH_COLLECTION,
             payload
         }),
-        fetchCollectionPhotos: (payload) => ({
-            type: Action.Types.FETCH_COLLECTION_PHOTOS,
-            payload
-        })
+        fetchCollectionPhotos: (id, page, per_page = 10) => {
+            console.log('@@ redux in [id, page, per_page]', id, page, per_page)
+            return {
+                type: Action.Types.FETCH_COLLECTION_PHOTOS,
+                id,
+                page,
+                per_page
+            }
+        }
     }
 };
 

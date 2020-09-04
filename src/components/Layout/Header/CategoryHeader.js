@@ -24,7 +24,7 @@ const CategoryHeader = (props) => {
                     list.map((item, index) => <Linker
                         onClick={() => {
                             photosCreators.updateState({selectedCollectionId: item.id})
-                            navigate(`/collection/${item.id}/`)
+                            navigate(`/collections/${item.id}/photos?page=1&per_page=10`)
                         }}
                         key={index}>
                         <LinkerText>{item.title}</LinkerText>

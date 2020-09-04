@@ -18,12 +18,11 @@ const Routes = (props) => {
             <Switch>
                 <Route exact path={'/'} component={Home}/>
                 <Route path={'/random'} component={RandomPhotos}/>
-                <Route path={'/collection/:id'} component={Collection}/>
+                <Route path={'/collections/:id/photos'} component={Collection}/>
                 <Route path={'/search/:type/:keyword'} component={Search}/>
-                {/*<Route path={'/collection/:id/:title/'} component={Home}/>*/}
 
                 <Route path={'/404'} component={Page404}/>
-                <Redirect to={'/404'}></Redirect>
+                {/*<Redirect to={'/404'}></Redirect>*/}
             </Switch>
         </Wrapper>
     )

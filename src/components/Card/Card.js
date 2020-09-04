@@ -21,7 +21,6 @@ const Card = (props) => {
         }}>
             <Image src={item.urls.small}/>
 
-            {/*<Modal isVisible={true} onClick={()=>{console.log('@@ ...')}}>기능을 준비중입니다.</Modal>*/}
             <Screen>
                 <ButtonWrap gutter={6} align={'flex-end'}>
                     <Button color={'gray'}

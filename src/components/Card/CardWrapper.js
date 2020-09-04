@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import Card from "./Card";
 import Masonry from 'masonry-layout';
@@ -6,8 +6,8 @@ import {useSelector} from "react-redux";
 import ModalDetail from "./ModalDetail";
 import * as imagesloaded from "imagesloaded";
 import ModalPortal from "../Modal/ModalPortal";
-import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../Loading/Loading";
+import InfiniteScroll from 'react-infinite-scroller';
 import Footer from "../Layout/Footer";
 
 let grid;
@@ -16,9 +16,9 @@ let imgLoad;
 const CardWrapper = (props) => {
     const {
         list,
-        style,
         fetchMore = () => {},
         hasMore,
+        style,
     } = props;
 
     const {selectedPhoto} = useSelector(state => state.photos);
@@ -42,25 +42,22 @@ const CardWrapper = (props) => {
         return <Loading/>
     }
 
+    let items = [];
+    list.map((item, i) => {
+        items.push(<Card item={item} key={i}/>);
+    });
+
     return (
         <Wrapper className={'masonry-grid'} style={style}>
             {/*<div className={'masonry-grid-sizer'}/>*/}
             {/*<div className="masonry-gutter-sizer"/>*/}
 
-
-            {
-                list?.map((item, index) => <Card item={item} key={index}/>)
-            }
-
             <InfiniteScroll
-                dataLength={list?.length}
-                next={fetchMore}
+                loadMore={fetchMore}
                 hasMore={hasMore}
-                scrollThreshold={0.7}
-                loader={<Loading/>}
-                onScroll={()=> console.log('@@ 뭥쟈ㅣㄴ짜',)}
-                endMessage={<Footer/>}
+                loader={<div className="loader" key={0}>Loading ...</div>}
             >
+                {items}
             </InfiniteScroll>
 
             {
