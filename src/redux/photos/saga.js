@@ -6,6 +6,11 @@ import {photosCreators} from "../actionCreators";
 
 export default function* () {
     yield all([
+        takeLatest(Action.Types.FETCH_PHOTOS, function* () {
+            const result = yield call(API.fetchPhotos);
+            // console.log('@@ result', result); // error, request error 처리
+            yield put(photosCreators.updateState({photos: result.data}))
+        }),
         takeLatest(Action.Types.SEARCH_KEYWORD, function* (action) {
             const result = yield call(API.searchKeyword, action.payload);
             // console.log('@@ result', result); // error, request error 처리

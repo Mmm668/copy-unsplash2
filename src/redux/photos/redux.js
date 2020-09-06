@@ -1,4 +1,5 @@
 const initialState = {
+    photos: undefined,
     selectedPhoto: undefined,// mock.cardPhotoList[1]
 
     keyword: '',
@@ -13,6 +14,8 @@ export const Action = {
     Types: {
         UPDATE_STATE: '@PHOTOS/UPDATE_STATE',
 
+        FETCH_PHOTOS: '@PHOTOS/FETCH_PHOTOS',
+
         SEARCH_KEYWORD: '@PHOTOS/SEARCH_KEYWORD',
 
         FETCH_COLLECTION: '@PHOTOS/FETCH_COLLECTION',
@@ -21,6 +24,10 @@ export const Action = {
     Creators: {
         updateState: (payload) => ({
             type: Action.Types.UPDATE_STATE,
+            payload
+        }),
+        fetchPhotos: (payload) => ({
+            type: Action.Types.FETCH_PHOTOS,
             payload
         }),
         searchKeyword: (payload) => ({
