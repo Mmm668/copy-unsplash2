@@ -19,7 +19,7 @@ const Search = (props) => {
     return (
         <Wrapper>
             <Head>
-                <PageTitle title={searchResult?.meta.keyword || '검색어 없음'}/>
+                <PageTitle title={searchResult?.meta.keyword}/>
             </Head>
             {
                 keyword.length === 0 && <NoData/>

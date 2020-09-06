@@ -55,7 +55,7 @@ const request = async (method, url, data) => {
 
 const API = {
     fetchPhotos: () => request('get', '/photos'),
-    searchKeyword: (keyword) => request('get', `/search?page=1&query=${keyword}`),
+    searchKeyword: (keyword = '') => request('get', `/search?page=1&query=${keyword}`),
     fetchCollection: (id) => request('get', `/collections/${id}`),
     fetchCollectionPhotos: (id, page, per_page) => {
         console.log('@@ api in [id, page, per_page]', id, page, per_page);

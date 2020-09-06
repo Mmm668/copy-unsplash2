@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from "styled-components";
-import {TiHeartHalfOutline} from "react-icons/all";
+import {ImHeartBroken} from "react-icons/all";
 
 const NoData = (props) => {
 
     return (
         <Wrapper>
-            <TiHeartHalfOutline size={50} color={'#999999'}/>
+            <ImHeartBroken size={50} color={'#c7c7c7'}/>
             <Text>데이터가 없습니다.</Text>
         </Wrapper>
     )
@@ -21,10 +21,10 @@ const Wrapper = styled.div`
   padding: 50px 10px;
 `;
 const Text = styled.div`
-  margin-top: 8px;
+  margin-top: 15px;
   font-size: 16px;
   font-weight: 400;
-  color:#787878;
+  color:#979797;
 `;
 
 export default NoData;
