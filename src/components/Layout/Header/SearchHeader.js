@@ -1,22 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import {FiLayers, HiPhotograph, IoMdPeople} from "react-icons/all";
-import {navigate} from "../../../helpers/HistoryHelper";
 import {kComma} from "../../../helpers/CommonHelper";
 import {useSelector} from "react-redux";
-import {useHistory} from "react-router-dom";
 import SearchHeaderItem from "./SearchHeaderItem";
-
-function printCount(v, history) {
-    return
-}
+import {photosCreators} from "../../../redux/actionCreators";
 
 const SearchHeader = (props) => {
 
-    const history = useHistory();
-    const {searchResult} = useSelector(state => state.photos);
+    const {searchResult,selectedSearchTab} = useSelector(state => state.photos);
     const [counts, setCounts] = useState([]);
-    const [urlPath, setUrlPath] = useState(history.location.pathname);
 
     useEffect(() => {
         setCounts([
@@ -25,8 +18,7 @@ const SearchHeader = (props) => {
                 text: 'photos',
                 count: kComma(searchResult?.photos.total),
                 onClick: () => {
-                    navigate(`/search/photos/${searchResult?.meta.keyword}`);
-                    setUrlPath(history.location.pathname);
+                    photosCreators.updateState({selectedSearchTab: 'photos'})
                 },
             },
             {
@@ -34,8 +26,7 @@ const SearchHeader = (props) => {
                 text: 'collections',
                 count: kComma(searchResult?.collections.total),
                 onClick: () => {
-                    navigate(`/search/collections/${searchResult?.meta.keyword}`);
-                    setUrlPath(history.location.pathname);
+                    photosCreators.updateState({selectedSearchTab: 'collections'})
                 },
             },
             {
@@ -43,8 +34,7 @@ const SearchHeader = (props) => {
                 text: 'users',
                 count: kComma(searchResult?.users.total),
                 onClick: () => {
-                    navigate(`/search/users/${searchResult?.meta.keyword}`);
-                    setUrlPath(history.location.pathname);
+                    photosCreators.updateState({selectedSearchTab: 'users'})
                 },
             },
         ])
@@ -54,7 +44,7 @@ const SearchHeader = (props) => {
         <Wrapper>
             <Body className={'no-scroll'}>
                 {
-                    counts.map(item => <SearchHeaderItem item={item} isActive={urlPath.indexOf(item.text) > 0}/>)
+                    counts.map(item => <SearchHeaderItem item={item} tabType={selectedSearchTab}/>)
                 }
             </Body>
         </Wrapper>

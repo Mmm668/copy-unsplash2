@@ -1,11 +1,10 @@
 import React from 'react';
 import styled, {css} from "styled-components";
 
-const SearchHeaderItem = ({item, isActive}) => {
-
+const SearchHeaderItem = ({item, tabType}) => {
 
     return (
-        <Linker onClick={item.onClick} key={item.text} isActive={isActive}>
+        <Linker onClick={item.onClick} key={item.text} isActive={tabType === item.text}>
             <LinkerIcon>{item.icon}</LinkerIcon>
             <LinkerText>{item.text} <span className="count">{item.count}</span></LinkerText>
         </Linker>

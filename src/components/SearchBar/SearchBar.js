@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled, {css} from "styled-components";
 import {BsSearch} from "react-icons/all";
 import {navigate} from "../../helpers/HistoryHelper";
@@ -15,9 +15,11 @@ const SearchBar = (props) => {
     const {keyword} = useSelector(state => state.photos);
     const [value, setValue] = useState(keyword);
 
+    useEffect(()=>{
+        setValue(keyword)
+    },[keyword])
+
     function onSubmit() {
-        photosCreators.updateState({keyword: value})
-        photosCreators.searchKeyword(value)
         navigate(`/search/photos/${value}`)
     }
 

@@ -3,6 +3,7 @@ const initialState = {
     selectedPhoto: undefined,// mock.cardPhotoList[1]
 
     keyword: '',
+    selectedSearchTab: 'photos',
     searchResult: undefined,
 
     selectedCollectionId: undefined,
