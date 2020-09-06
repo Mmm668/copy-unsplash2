@@ -25,6 +25,9 @@ const CardWrapper = (props) => {
 
     useEffect(() => {
         grid = document.querySelector('.masonry-grid');
+    }, [])
+
+    useEffect(()=>{
         if(list){
             imagesloaded(grid, function () {
                 msnry = new Masonry(grid, {
@@ -36,7 +39,7 @@ const CardWrapper = (props) => {
                 })
             });
         }
-    }, [])
+    },[list])
 
     if(!list){
         return <Loading/>
