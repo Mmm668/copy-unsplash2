@@ -1,6 +1,6 @@
 const initialState = {
     photos: undefined,
-    selectedPhoto: undefined,// mock.cardPhotoList[1]
+    selectedPhoto: undefined,
 
     keyword: '',
     selectedSearchTab: 'photos',
@@ -14,6 +14,7 @@ const initialState = {
 export const Action = {
     Types: {
         UPDATE_STATE: '@PHOTOS/UPDATE_STATE',
+        CLEAR_STORE: '@PHOTOS/CLEAR_STORE', // set to initial state
 
         FETCH_PHOTOS: '@PHOTOS/FETCH_PHOTOS',
 
@@ -26,6 +27,9 @@ export const Action = {
         updateState: (payload) => ({
             type: Action.Types.UPDATE_STATE,
             payload
+        }),
+        clearStore: () => ({
+            type: Action.Types.CLEAR_STORE
         }),
         fetchPhotos: (payload) => ({
             type: Action.Types.FETCH_PHOTOS,
@@ -58,8 +62,9 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload
             };
-        default:
-            return state;
+        case Action.Types.CLEAR_STORE:
+            return initialState;
+        default: return state;
     }
 }
 
