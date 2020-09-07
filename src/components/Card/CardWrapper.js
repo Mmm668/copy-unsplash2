@@ -9,6 +9,7 @@ import ModalPortal from "../Modal/ModalPortal";
 import Loading from "../Loading/Loading";
 import InfiniteScroll from 'react-infinite-scroller';
 import Footer from "../Layout/Footer";
+import {photosCreators} from "../../redux/actionCreators";
 
 let grid;
 let msnry;
@@ -16,7 +17,8 @@ let imgLoad;
 const CardWrapper = (props) => {
     const {
         list,
-        fetchMore = () => {},
+        fetchMore = () => {
+        },
         hasMore,
         style,
     } = props;
@@ -27,8 +29,8 @@ const CardWrapper = (props) => {
         grid = document.querySelector('.masonry-grid');
     }, [])
 
-    useEffect(()=>{
-        if(list){
+    useEffect(() => {
+        if (list) {
             imagesloaded(grid, function () {
                 msnry = new Masonry(grid, {
                     itemSelector: '.masonry-item',
@@ -39,34 +41,29 @@ const CardWrapper = (props) => {
                 })
             });
         }
-    },[list])
+    }, [list])
 
-    if(!list){
+    if (!list) {
         return <Loading/>
     }
 
-    let items = [];
-    list.map((item, i) => {
-        items.push(<Card item={item} key={i}/>);
-    });
-
     return (
         <Wrapper className={'masonry-grid'} style={style}>
-            {/*<div className={'masonry-grid-sizer'}/>*/}
-            {/*<div className="masonry-gutter-sizer"/>*/}
-
             <InfiniteScroll
                 loadMore={fetchMore}
                 hasMore={hasMore}
-                loader={<div className="loader" key={0}>Loading ...</div>}
-            >
-                {items}
+                loader={<div className="loader" key={0}>Loading ...</div>}>
+                {
+                    list.map((item, i) => <Card item={item}
+                                                    index={i}
+                                                    key={item.id}/>
+                    )
+                }
             </InfiniteScroll>
-
             {
                 selectedPhoto &&
                 <ModalPortal>
-                    <ModalDetail item={selectedPhoto}/>
+                    <ModalDetail item={selectedPhoto} itemList={list}/>
                 </ModalPortal>
             }
         </Wrapper>

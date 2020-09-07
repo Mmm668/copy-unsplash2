@@ -20,8 +20,24 @@ const ModalDetail = ({item}) => {
 
     useEffect(()=>{
         document.body.classList.add("prevent-double-scroll");
+
+        document.addEventListener('keyup', modalKeyListener);
+        function modalKeyListener(e) {
+            if (e.key === 'Escape' || e.keyCode === 27) {
+                photosCreators.updateState({selectedPhoto: undefined})
+            }
+            if (e.keyCode === 37) { // left 37
+                console.log('@@ 외녹ㅉ');
+                photosCreators.selectPhoto(item, -1);
+            }
+            if(e.keyCode === 39){ // right 39
+                console.log('@@ 오른족');
+                photosCreators.selectPhoto(item, +1);
+            }
+        }
         return() => {
             document.body.classList.remove("prevent-double-scroll");
+            // document.removeEventListener('keyup', modalKeyListener);
         }
     },[])
 
@@ -31,10 +47,10 @@ const ModalDetail = ({item}) => {
                 <ButtonClose onClick={() => photosCreators.updateState({selectedPhoto: undefined})}>
                     <VscChromeClose/>
                 </ButtonClose>
-                <ButtonTo side={'left'}>
+                <ButtonTo side={'left'} disabled={item.indexPosition === 'first'}>
                     <HiOutlineChevronLeft/>
                 </ButtonTo>
-                <ButtonTo side={'right'}>
+                <ButtonTo side={'right'} disabled={item.indexPosition === 'last'}>
                     <HiOutlineChevronRight/>
                 </ButtonTo>
 
@@ -49,6 +65,7 @@ const ModalDetail = ({item}) => {
                                 <Button icon={<BsHeartFill/>}/>
                                 <Button icon={<FiPlus/>}/>
                                 <Button filled={'#3cb46e'}
+                                        opacity={1}
                                         as={'a'}
                                         href={item.links.download}
                                         download>

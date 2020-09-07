@@ -8,17 +8,11 @@ import HalfWrap from "../HalfWrap/HalfWrap";
 import LeftWrap from "../HalfWrap/LeftWrap";
 import RightWrap from "../HalfWrap/RightWrap";
 import {photosCreators} from "../../redux/actionCreators";
-import Modal from "../Modal/Modal";
 
-const Card = (props) => {
-    const {
-        item
-    } = props;
+const Card = ({item}) => {
 
     return (
-        <Wrapper className={'masonry-item'} onClick={() => {
-            photosCreators.updateState({selectedPhoto: item});
-        }}>
+        <Wrapper className={'masonry-item'} onClick={() => photosCreators.selectPhoto(item, 0)}>
             <Image src={item.urls.small}/>
 
             <Screen>
@@ -40,7 +34,7 @@ const Card = (props) => {
 
                 <HalfWrap>
                     <LeftWrap>
-                        <UserBadge src={item.user.profile_image.small} name={item.user.name}/>
+                        <UserBadge src={item.user.profile_image.small} name={item.user.name} light/>
                     </LeftWrap>
                     <RightWrap>
                         <ButtonWrap gutter={6} align={'flex-end'}>
