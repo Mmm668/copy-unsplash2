@@ -18,16 +18,10 @@ import {photosCreators} from "../../redux/actionCreators";
 
 const ModalDetail = ({item}) => {
 
-    const image = useRef(null);
-    const [imageStyle, setImageStyle] = useState(null);
-
     useEffect(()=>{
-        const width = image.current.clientWidth;
-        const height = image.current.clientHeight;
-        if(width / height > 1){ // horizontal
-            setImageStyle({maxWidth: 'calc((100vh - 175px)*1.5)'})
-        } else  {
-            setImageStyle({maxWidth: 'calc((100vh - 175px)*0.7)'})
+        document.body.classList.add("prevent-double-scroll");
+        return() => {
+            document.body.classList.remove("prevent-double-scroll");
         }
     },[])
 
@@ -64,7 +58,7 @@ const ModalDetail = ({item}) => {
                         </RightWrap>
                     </HalfWrap>
                     <ImageWrap>
-                        <Image src={item.urls.regular} ref={image} style={imageStyle}/>
+                        <Image src={item.urls.regular}/>
                     </ImageWrap>
                     <HalfWrap>
                         {/*<LeftWrap></LeftWrap>*/}
@@ -84,8 +78,7 @@ const Wrapper = styled.div`
   position: fixed;
   overflow:scroll;
   top: 0;
-  bottom: 0;
-  //height: 100%;
+  height: 100%;
   left: 0;
   right: 0;
   z-index: 20;
@@ -93,12 +86,11 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 32px 70px 100px;
+  padding: 32px 7% 0; // 100px
 `;
 
 const WindowWrap = styled.div`
   width: 100%;
-  height: 100%;
   padding: 20px 20px;
   border-radius: 3px 3px 0 0;
   background: #fff;
@@ -109,24 +101,29 @@ const ButtonClose = styled.div`
   z-index: 2;
   top: 0;
   left: 0;
-  margin: 16px;
+  margin: 16px 3%;
   font-size: 30px;
   color:#f1f1f1;
   cursor:pointer;
 `;
 
 const ButtonTo = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 2;
   top: 50%;
   transform: translateY(-50% + 50px);
   font-size: 30px;
   color:#f1f1f1;
+  cursor:pointer;
   ${props => props.side === 'left' && css`
-     left: -43px;
+     left: calc(2% + 4px);
   `}
   ${props => props.side === 'right' && css`
-     right: -43px;
+     right: calc(2% + 4px);
+  `}
+  ${props => props.disabled && css`
+     opacity: 0.4;
+     cursor:initial;
   `}
 `;
 const ContentWrap = styled.div`
@@ -137,13 +134,11 @@ const ContentWrap = styled.div`
 const ImageWrap = styled.div`
   display: flex;
   justify-content: center;
-  padding: 25px 60px;
-  background:pink;
+  align-items: center;
+  padding: 20px 0 23px;
 `;
 const Image = styled.img`
-  //max-width: calc((100vh - 175px)*0.6);
-  // mixin으로 계산해야함 
-  // ${props => props.style}
+  max-height: calc(100vh - 180px);
 `;
 
 export default ModalDetail;
