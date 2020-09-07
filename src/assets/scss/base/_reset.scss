@@ -182,8 +182,12 @@ input:disabled {
   background: $lighter-gray;
 }
 
-
-body,html {
-  height: 100%;
-  overflow: auto;
+body.prevent-double-scroll{
+  overflow: hidden;
+  #root{
+    height: 100%;
+    overflow: auto;
+  }
 }
+
+
