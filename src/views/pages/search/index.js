@@ -7,55 +7,67 @@ import {appCreators, photosCreators} from "../../../redux/actionCreators";
 import NoData from "../../../components/Errors/NoData";
 import CardWrapper from "../../../components/Card/CardWrapper";
 import Loading from "../../../components/Loading/Loading";
+import CollectionWrapper from "../../../components/Collection/CollectionWrapper";
+import NameCardWrapper from "../../../components/NameCard/NameCardWrapper";
 
 const Search = (props) => {
 
-    const urlPath = useHistory().location.pathname.split('/');
-    const urlKeyword = urlPath[urlPath.length -1];
+    const history = useHistory();
+    // const urlPath = history.location.pathname.split('/');
+    // const urlKeyword = urlPath[urlPath.length -1];
     const {keyword, searchResult, selectedSearchTab} = useSelector(state => state.photos);
-    const [tabData, setTabData] = useState(null);
-    useEffect(() => {
+    const [urlPath, setUrlPath] = useState('');
+    const [urlKeyword, setUrlKeyword] = useState('');
+
+    useEffect(()=>{
         appCreators.updateState({headerType: 'search'})
         // return () => {
         //     appCreators.updateState({headerType: 'none'})
         // }
+    },[])
 
+    useEffect(() => {
+        setUrlPath(history.location.pathname.split('/'));
+    }, [history.location.pathname])
+
+    useEffect(()=>{
+        setUrlKeyword(urlPath[urlPath.length -1]);
+    },[urlPath])
+
+    useEffect(()=>{
         photosCreators.updateState({keyword: urlKeyword})
-    }, [])
-    
-    useEffect(()=>{
         photosCreators.searchKeyword(urlKeyword)
-    },[keyword])
+    },[urlKeyword])
 
-    useEffect(()=>{
-       if(searchResult && selectedSearchTab){
-           switch(selectedSearchTab){
-               case 'photos':
-                   setTabData(searchResult.photos.results)
-                   break;
-               case 'collections':
-                   setTabData(searchResult.collections.results)
-                   break;
-               case 'users':
-                   setTabData(searchResult.users.results)
-                   break;
-           }
-       }
-    },[searchResult, selectedSearchTab])
-
-    if(!searchResult && !tabData){
+    if(!searchResult){
+        // saga에서 loading 넣으면 싱크 안 맞을 일 없을 듯
         return <Loading/>
+    }
+
+    function renderTap(){
+        switch(selectedSearchTab){
+            case 'photos':
+                return <CardWrapper list={searchResult.photos.results}/>
+            case 'collections':
+                return <CollectionWrapper list={searchResult.collections.results}/>
+                break;
+            case 'users':
+                return <NameCardWrapper list={searchResult.users.results}/>
+                break;
+        }
     }
 
     return (
         <Wrapper>
             <Head>
-                <PageTitle title={urlKeyword}/>
+                <PageTitle title={urlKeyword} style={{textTransform: 'capitalize'}}/>
             </Head>
             {
-                !tabData && <NoData/>
+                !(searchResult.photos.results && searchResult.collections.results && searchResult.users.results) && <NoData/>
             }
-            <CardWrapper list={tabData}/>
+            {
+                renderTap()
+            }
         </Wrapper>
     )
 };
@@ -63,6 +75,7 @@ const Search = (props) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding-bottom: 70px;
 `;
 
 const Head = styled.div`
