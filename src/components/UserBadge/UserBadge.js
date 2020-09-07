@@ -10,24 +10,19 @@ const UserBadge = (props) => {
         sub,
         style,
         font,
+        light,
     } = props;
 
     return (
-        <Wrapper style={style}>
+        <Wrapper style={style} light={light}>
            <Thumb src={src}/>
             <Desc>
-                <Name mode={mode} style={font}>{name}</Name>
-                <Sub mode={mode}>{sub}</Sub>
+                <Name style={font}>{name}</Name>
+                <Sub>{sub}</Sub>
             </Desc>
         </Wrapper>
     )
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
 
 const Thumb = styled.img`
   width: 32px;
@@ -44,19 +39,26 @@ const Desc = styled.div`
 
 const Name = styled.div`
   font-size: 15px;
-  color:#e6e6e6;
-  ${props => props.mode === 'light' && css`
-    color:#797979;
-  `}
+  color:#797979;
 `;
 
 const Sub = styled.div`
   line-height: 1;
   font-size: 11px;
-  color:#e6e6e6;
-  ${props => props.mode === 'light' && css`
-    color:#797979;
-  `}
+  color:#797979;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  ${props => props.light && css`
+    ${Name} {
+      color:#f3f3f3;
+    }
+    ${Sub} {
+      color:#e6e6e6;  
+    }
+  `}
+`;
 export default UserBadge;

@@ -37,7 +37,7 @@ const Desc = styled.div`
 
 const Title = styled.div`
     margin-top: 15px;
-    font-size: 19px;
+    font-size: 20px;
     text-transform: capitalize;
     font-weight: 700;
 `;

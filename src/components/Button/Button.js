@@ -8,12 +8,13 @@ const Button = (props) => {
         children,
         onClick,
         filled,
+        fullWidth,
         opacity,
-        fontSize
+        fontSize,
     } = props;
 
     return (
-        <Wrapper color={color} filled={filled} onClick={onClick} opacity={opacity}>
+        <Wrapper color={color}  opacity={opacity} filled={filled} fullWidth={fullWidth} onClick={onClick}>
             {icon}
             <Text filled={filled} fontSize={fontSize}>
                 {children}
@@ -48,6 +49,10 @@ const Wrapper = styled.div`
  ${props => props.opacity && css`
     opacity: ${props.opacity};
  `}
+ ${props => props.fullWidth && css`
+   //display: flex;
+   width: 100%;
+`}
 `;
 
 export const Text = styled.div`
