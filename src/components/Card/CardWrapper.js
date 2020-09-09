@@ -30,7 +30,7 @@ const CardWrapper = (props) => {
 
     useEffect(() => {
         if (list) {
-            imagesloaded(grid, function () {
+            window.onload = imagesloaded(grid, function () {
                 msnry = new Masonry(grid, {
                     itemSelector: '.masonry-item',
                     columnWidth: 375,
