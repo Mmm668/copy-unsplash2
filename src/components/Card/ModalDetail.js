@@ -87,7 +87,7 @@ const ModalDetail = ({list, item}) => {
                                 <Button filled={'#3cb46e'}
                                         opacity={1}
                                         as={'a'}
-                                        href={modalContent.links.download_location}
+                                        href={modalContent.links.download}
                                         download>
                                     Download free
                                 </Button>

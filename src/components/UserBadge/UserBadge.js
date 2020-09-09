@@ -27,7 +27,7 @@ const Thumb = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  margin-right: 9px;
+  margin-right: 0.5rem;
 `;
 
 const Desc = styled.div`
@@ -37,13 +37,13 @@ const Desc = styled.div`
 `;
 
 const Name = styled.div`
-  font-size: 15px;
+  font-size: 0.9rem;
   color:#797979;
 `;
 
 const Sub = styled.div`
   line-height: 1;
-  font-size: 11px;
+  font-size: 0.7rem;
   color:#797979;
 `;
 

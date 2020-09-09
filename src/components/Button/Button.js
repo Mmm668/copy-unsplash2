@@ -58,7 +58,7 @@ const Wrapper = styled.div`
 
 export const Text = styled.div`
   margin-left: 4px;
-  font-size: 0.7em;
+  font-size: 0.9rem;
   font-weight: 400;
   color:#111;
   ${props => props.filled && css`
