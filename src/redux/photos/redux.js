@@ -1,5 +1,3 @@
-import {photosCreators} from "../actionCreators";
-
 const initialState = {
     fetchLoader : true,
     selectedPhoto: undefined,
