@@ -24,7 +24,7 @@ const CategoryHeader = (props) => {
                     list.map((item, index) => <Linker
                         onClick={() => {
                             photosCreators.updateState({selectedCollectionId: item.id})
-                            navigate(`/collections/${item.id}/photos?page=1&per_page=10`)
+                            navigate(`/collections/${item.id}/photos`)
                         }}
                         key={index}>
                         <LinkerText>{item.title}</LinkerText>
@@ -44,8 +44,8 @@ const Wrapper = styled.div`
     z-index: 2;
     top: 0;
     bottom: 0;
-    right: 60px;
-    width: 60px;
+    right: 50px;
+    width: 50px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, #fff 95%, #fff);
   }
   &:after{
@@ -54,7 +54,7 @@ const Wrapper = styled.div`
     top: 0;
     bottom: 0;
     right: 0;
-    width: 60px;
+    width: 50px;
     background:#fff;
   }
 `;

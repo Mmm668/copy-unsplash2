@@ -10,7 +10,7 @@ const Collection = (props) => {
     } = props;
 
     return (
-        <Wrapper className={'masonry-item'} onClick={() => navigate}>
+        <Wrapper className={'masonry-item'} onClick={() => {}}>
            <Thumbnail list={item.preview_photos}/>
             <Desc>
                 <Title>{item.title}</Title>
