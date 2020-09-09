@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import styled, {css} from "styled-components";
 import {BsSearch} from "react-icons/all";
 import {navigate} from "../../helpers/HistoryHelper";
-import {photosCreators} from "../../redux/actionCreators";
 import {useSelector} from "react-redux";
 
 const SearchBar = (props) => {

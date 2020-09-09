@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import Header from "./Header";
 import Routes from "../../Routes";
-import Footer from "./Footer";
 
 const Layout = (props) => {
 

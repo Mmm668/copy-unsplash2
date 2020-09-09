@@ -5,7 +5,7 @@ import Home from "./views/pages/home";
 import Collection from "./views/pages/collection";
 import Search from "./views/pages/search";
 import Page404 from "./views/pages/Erros/Page404";
-import {appCreators, photosCreators} from "./redux/actionCreators";
+import {photosCreators} from "./redux/actionCreators";
 
 const Routes = (props) => {
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useImperativeHandle, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import styled from "styled-components";
 import PageTitle from "../../../components/PageTitle";
@@ -13,7 +13,7 @@ import NameCardWrapper from "../../../components/NameCard/NameCardWrapper";
 const Search = (props) => {
 
     const history = useHistory();
-    const {searchResult, selectedSearchTab, fetchLoader} = useSelector(state => state.photos);
+    const {searchResult, selectedSearchTab} = useSelector(state => state.photos);
     const [urlPath, setUrlPath] = useState('');
     const [urlKeyword, setUrlKeyword] = useState('');
 
@@ -48,10 +48,8 @@ const Search = (props) => {
                 return <CardWrapper list={searchResult.photos.results}/>
             case 'collections':
                 return <CollectionWrapper list={searchResult.collections.results}/>
-                break;
             case 'users':
                 return <NameCardWrapper list={searchResult.users.results}/>
-                break;
         }
     }
 

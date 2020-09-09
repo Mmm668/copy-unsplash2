@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
 import Card from "./Card";
 import Masonry from 'masonry-layout';
@@ -7,13 +7,10 @@ import ModalDetail from "./ModalDetail";
 import * as imagesloaded from "imagesloaded";
 import ModalPortal from "../Modal/ModalPortal";
 import Loading from "../Loading/Loading";
-import Footer from "../Layout/Footer";
-import {photosCreators} from "../../redux/actionCreators";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 let grid;
 let msnry;
-let imgLoad;
 const CardWrapper = (props) => {
     const {
         list,

@@ -4,7 +4,6 @@ import Images from "../../assets/image";
 
 const UserBadge = (props) => {
     const {
-        mode,
         src = Images.userIcon,
         name,
         sub,

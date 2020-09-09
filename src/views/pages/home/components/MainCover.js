@@ -5,8 +5,6 @@ import SearchBar from "../../../../components/SearchBar";
 
 const MainCover = (props) => {
 
-    const {src} = props;
-
     return (
         <Wrapper src={Images.mainCover}>
             <Screen>
@@ -31,7 +29,7 @@ const MainCover = (props) => {
                         <span className={'gray'}>Read more about the </span>Unsplash License
                     </div>
                     <div className={'text-wrap'}>
-                        <img src={Images.mainCoverLogo1}/>
+                        <img src={Images.mainCoverLogo1} alt={'main_cover'}/>
                         All you need to create a website.
                     </div>
                 </Bottom>

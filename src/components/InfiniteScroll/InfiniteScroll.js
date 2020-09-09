@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import {useSelector} from "react-redux";
 import Loading from "../Loading/Loading";
 
 const InfiniteScroll = ({children, fetchMore=()=>{}, hasMore, loader, footer}) => {
