@@ -176,6 +176,9 @@ const ImageWrap = styled.div`
 `;
 const Image = styled.img`
   max-height: calc(100vh - 180px);
+  @media only screen and (max-width: 500px) {
+  width: 100%;
+}
 `;
 
 export default ModalDetail;

@@ -11,7 +11,7 @@ const Button = (props) => {
         fullWidth,
         opacity,
         fontSize,
-        _,
+        ..._
     } = props;
 
     return (
@@ -58,7 +58,7 @@ const Wrapper = styled.div`
 
 export const Text = styled.div`
   margin-left: 4px;
-  font-size: 13px;
+  font-size: 0.7em;
   font-weight: 400;
   color:#111;
   ${props => props.filled && css`

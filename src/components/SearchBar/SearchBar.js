@@ -11,6 +11,7 @@ const SearchBar = (props) => {
         type, // default || 'main' : 헤더  디폴트
         placeholder = 'Search free high-resolution photos',
         style,
+        className
     } = props;
     const {keyword} = useSelector(state => state.photos);
     const [value, setValue] = useState(keyword);
@@ -24,7 +25,7 @@ const SearchBar = (props) => {
     }
 
     return (
-        <Wrapper type={type} style={style}>
+        <Wrapper type={type} style={style} className={className}>
             <Icon onClick={onSubmit}>
                 <BsSearch size={19} color={'#999'}/>
             </Icon>

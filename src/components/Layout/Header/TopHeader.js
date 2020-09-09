@@ -22,7 +22,7 @@ const TopHeader = (props) => {
                 </LogoDesc>
             </LogoWrap>
 
-           <SearchBar style={{margin: '0 20px'}}/>
+           <SearchBar style={{margin: '0 20px'}} className={'mobile-style'}/>
 
            <Etc>
                <div className={'f-link-wrap'}>
@@ -30,14 +30,13 @@ const TopHeader = (props) => {
                    <div className="f-link">Explore</div>
                    <BubbleDropdown list={mock.headerBubbleDropdown}/>
                </div>
-               <Button>Submit a photo</Button>
-               <Bar/>
-               <ButtonWrap gutter={6}>
+               <Button className={'mobile-style'}>Submit a photo</Button>
+               <Bar className={'mobile-style'}/>
+               <ButtonWrap gutter={6} className={'mobile-style'}>
                    <div className="f-link">Login</div>
                    <Button filled={'#3cb46e'} fontSize={16} opacity={1}>Join free</Button>
                </ButtonWrap>
            </Etc>
-
         </Wrapper>
     )
 };
@@ -48,6 +47,11 @@ const Wrapper = styled.div`
   align-items: center;
   height: 60px;
   padding: 0 20px;
+  @media only screen and (max-width: 500px) {
+    .mobile-style{
+      display: none;
+    }
+  }
 `;
 
 const LogoWrap = styled.div`
