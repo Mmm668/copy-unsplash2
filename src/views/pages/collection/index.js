@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import CardWrapper from "../../../components/Card/CardWrapper";
-import CardWrapper2 from "../../../components/Card/CardWrapper2";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {photosCreators} from "../../../redux/actionCreators";
@@ -9,24 +8,21 @@ import Loading from "../../../components/Loading/Loading";
 import UserBadge from "../../../components/UserBadge";
 import PageTitle from "../../../components/PageTitle";
 import {navigate} from "../../../helpers/HistoryHelper";
+import InfiniteScroll from "../../../components/InfiniteScroll/InfiniteScroll";
 
 const Collection = (props) => {
 
     const history = useHistory();
-    const searchParams = new URLSearchParams(history.location.search)
-    const {selectedCollectionId, collection, collectionPhotos} = useSelector(state => state.photos);
+    let id = history.location.pathname.split('/')[2];
+    const {collection, collectionPhotos} = useSelector(state => state.photos);
 
     useEffect(() => {
-        if (selectedCollectionId) {
-            photosCreators.fetchCollection(selectedCollectionId);
-            photosCreators.fetchCollectionPhotos(selectedCollectionId, searchParams.get('page'));
+        if (id) {
+            photosCreators.fetchCollection(id);
+            photosCreators.fetchCollectionPhotos(id);
         }
-
-        // set init collectionId from url (prevent non-fetch, in case of type direct url, not click menu)
-        let id = history.location.pathname.split('/')[2];
-        photosCreators.updateState({selectedCollectionId: id})
-    }, [selectedCollectionId])
-
+    }, [id])
+    
     if (!collection && !collectionPhotos) {
         return <Loading/>
     }
@@ -47,14 +43,9 @@ const Collection = (props) => {
                 </Count>
             </Head>
             <Body>
-                <CardWrapper2 list={collectionPhotos}
-                             fetchMore={() => {
-                                 console.log('@@ fetcmore');
-                                 navigate(`/collections/${selectedCollectionId}/photos?per_page=${searchParams.get('per_page')}&page=${parseInt(searchParams.get('page')) + 1}`)
-                             }}
-                             hasMore={collectionPhotos?.length < collection?.total_photos - 10}
-                             style={{padding: '60px 0'}}
-                />
+                <InfiniteScroll fetchMore={() => photosCreators.fetchCollectionPhotos(id)}>
+                    <CardWrapper list={collectionPhotos} style={{padding: '60px 0'}}/>
+                </InfiniteScroll>
             </Body>
         </Wrapper>
     )

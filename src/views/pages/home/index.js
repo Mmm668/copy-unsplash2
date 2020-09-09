@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import CardWrapper from "../../../components/Card/CardWrapper";
 import MainCover from "./components/MainCover";
-import {mock} from "../../../mock/mock";
 import {appCreators, photosCreators} from "../../../redux/actionCreators";
 import {useSelector} from "react-redux";
 import Loading from "../../../components/Loading/Loading";
+import InfiniteScroll from "../../../components/InfiniteScroll/InfiniteScroll";
 
 const Home = (props) => {
 
@@ -13,20 +13,23 @@ const Home = (props) => {
 
     useEffect(() => {
         appCreators.updateState({headerType: 'category'})
-        photosCreators.fetchPhotos();
+
         // return () => {
         //     appCreators.updateState({headerType: 'none'})
         // }
     }, [])
 
-    if(!photos){
-        return <Loading/>;
-    }
+    useEffect(()=>{
+        photosCreators.fetchPhotos()
+    },[])
 
     return (
         <Wrapper>
             <MainCover/>
-            <CardWrapper list={photos} style={{padding: '60px 0'}}/>
+            <InfiniteScroll
+                fetchMore={() => photosCreators.fetchPhotos()}>
+                <CardWrapper list={photos} style={{padding: '60px 0'}}/>
+            </InfiniteScroll>
         </Wrapper>
     )
 };
