@@ -7,9 +7,9 @@ import ModalDetail from "./ModalDetail";
 import * as imagesloaded from "imagesloaded";
 import ModalPortal from "../Modal/ModalPortal";
 import Loading from "../Loading/Loading";
-import InfiniteScroll from 'react-infinite-scroller';
 import Footer from "../Layout/Footer";
 import {photosCreators} from "../../redux/actionCreators";
+import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 let grid;
 let msnry;
@@ -17,10 +17,9 @@ let imgLoad;
 const CardWrapper = (props) => {
     const {
         list,
-        fetchMore = () => {
-        },
-        hasMore,
         style,
+        fetchMore,
+        loader,
     } = props;
 
     const {selectedPhoto} = useSelector(state => state.photos);
@@ -30,17 +29,17 @@ const CardWrapper = (props) => {
     }, [])
 
     useEffect(() => {
-        if (list) {
-            imagesloaded(grid, function () {
-                msnry = new Masonry(grid, {
-                    itemSelector: '.masonry-item',
-                    columnWidth: 375,
-                    gutter: 20,
-                    fitWidth: true,
-                    horizontalOrder: true,
-                })
-            });
-        }
+       if(list){
+           imagesloaded(grid, function () {
+               msnry = new Masonry(grid, {
+                   itemSelector: '.masonry-item',
+                   columnWidth: 375,
+                   gutter: 20,
+                   fitWidth: true,
+                   horizontalOrder: true,
+               })
+           });
+       }
     }, [list])
 
     if (!list) {
@@ -50,13 +49,13 @@ const CardWrapper = (props) => {
     return (
         <Wrapper className={'masonry-grid'} style={style}>
             <InfiniteScroll
-                loadMore={fetchMore}
-                hasMore={hasMore}
-                loader={<div className="loader" key={0}>Loading ...</div>}>
+                fetchMore={fetchMore}
+                loader={loader}
+            >
                 {
                     list.map((item, i) => <Card item={item}
-                                                    index={i}
-                                                    key={item.id}/>
+                                                index={i}
+                                                key={item.id}/>
                     )
                 }
             </InfiniteScroll>

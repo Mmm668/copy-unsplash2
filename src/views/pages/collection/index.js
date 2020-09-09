@@ -9,12 +9,13 @@ import UserBadge from "../../../components/UserBadge";
 import PageTitle from "../../../components/PageTitle";
 import {navigate} from "../../../helpers/HistoryHelper";
 import InfiniteScroll from "../../../components/InfiniteScroll/InfiniteScroll";
+import Footer from "../../../components/Layout/Footer";
 
 const Collection = (props) => {
 
     const history = useHistory();
     let id = history.location.pathname.split('/')[2];
-    const {collection, collectionPhotos} = useSelector(state => state.photos);
+    const {collection, collectionPhotos, fetchLoader} = useSelector(state => state.photos);
 
     useEffect(() => {
         if (id) {
@@ -22,7 +23,7 @@ const Collection = (props) => {
             photosCreators.fetchCollectionPhotos(id);
         }
     }, [id])
-    
+
     if (!collection && !collectionPhotos) {
         return <Loading/>
     }
@@ -43,9 +44,10 @@ const Collection = (props) => {
                 </Count>
             </Head>
             <Body>
-                <InfiniteScroll fetchMore={() => photosCreators.fetchCollectionPhotos(id)}>
-                    <CardWrapper list={collectionPhotos} style={{padding: '60px 0'}}/>
-                </InfiniteScroll>
+                <CardWrapper list={collectionPhotos} style={{padding: '60px 0'}}
+                             fetchMore={() => photosCreators.fetchCollectionPhotos(id)}
+                             loader={fetchLoader && <Loading/>}
+                />
             </Body>
         </Wrapper>
     )

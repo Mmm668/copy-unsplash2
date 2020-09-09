@@ -6,10 +6,11 @@ import {appCreators, photosCreators} from "../../../redux/actionCreators";
 import {useSelector} from "react-redux";
 import Loading from "../../../components/Loading/Loading";
 import InfiniteScroll from "../../../components/InfiniteScroll/InfiniteScroll";
+import Footer from "../../../components/Layout/Footer";
 
 const Home = (props) => {
 
-    const {photos} = useSelector(state => state.photos);
+    const {photos, fetchLoader} = useSelector(state => state.photos);
 
     useEffect(() => {
         appCreators.updateState({headerType: 'category'})
@@ -26,10 +27,10 @@ const Home = (props) => {
     return (
         <Wrapper>
             <MainCover/>
-            <InfiniteScroll
-                fetchMore={() => photosCreators.fetchPhotos()}>
-                <CardWrapper list={photos} style={{padding: '60px 0'}}/>
-            </InfiniteScroll>
+                <CardWrapper list={photos} style={{padding: '60px 0'}}
+                             fetchMore={() => photosCreators.fetchPhotos()}
+                             loader={fetchLoader && <Loading/>}
+                />
         </Wrapper>
     )
 };
