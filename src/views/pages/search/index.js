@@ -13,9 +13,7 @@ import NameCardWrapper from "../../../components/NameCard/NameCardWrapper";
 const Search = (props) => {
 
     const history = useHistory();
-    // const urlPath = history.location.pathname.split('/');
-    // const urlKeyword = urlPath[urlPath.length -1];
-    const {keyword, searchResult, selectedSearchTab} = useSelector(state => state.photos);
+    const {searchResult, selectedSearchTab, fetchLoader} = useSelector(state => state.photos);
     const [urlPath, setUrlPath] = useState('');
     const [urlKeyword, setUrlKeyword] = useState('');
 

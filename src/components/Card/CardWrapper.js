@@ -29,17 +29,17 @@ const CardWrapper = (props) => {
     }, [])
 
     useEffect(() => {
-       if(list){
-           imagesloaded(grid, function () {
-               msnry = new Masonry(grid, {
-                   itemSelector: '.masonry-item',
-                   columnWidth: 375,
-                   gutter: 20,
-                   fitWidth: true,
-                   horizontalOrder: true,
-               })
-           });
-       }
+        if (list) {
+            imagesloaded(grid, function () {
+                msnry = new Masonry(grid, {
+                    itemSelector: '.masonry-item',
+                    columnWidth: 375,
+                    gutter: 22,
+                    fitWidth: true,
+                    horizontalOrder: true,
+                })
+            });
+        }
     }, [list])
 
     if (!list) {
@@ -53,16 +53,19 @@ const CardWrapper = (props) => {
                 loader={loader}
             >
                 {
-                    list.map((item, i) => <Card item={item}
-                                                index={i}
-                                                key={item.id}/>
+                    list.map((item, i) =>
+                        <Card
+                            list={list}
+                            item={item}
+                            index={i}
+                            key={item.id}/>
                     )
                 }
             </InfiniteScroll>
             {
                 selectedPhoto &&
                 <ModalPortal>
-                    <ModalDetail item={selectedPhoto} itemList={list}/>
+                    <ModalDetail item={selectedPhoto} list={list}/>
                 </ModalPortal>
             }
         </Wrapper>
@@ -71,7 +74,7 @@ const CardWrapper = (props) => {
 
 const Wrapper = styled.div`
   width: 1240px;
-  margin: -10px auto;
+  margin: -14px auto;
   //display: grid;
   //grid-template-columns: repeat(3, 1fr);
   //grid-template-rows: minmax(auto, auto);

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 
-const InfiniteScroll = ({children, fetchMore, hasMore, loader, footer}) => {
+const InfiniteScroll = ({children, fetchMore=()=>{}, hasMore, loader, footer}) => {
 
     function infiniteScrollListener() {
         let docHeight = document.body.clientHeight;

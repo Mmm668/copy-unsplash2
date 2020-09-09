@@ -33,8 +33,8 @@ export default function* () {
         /**
          * keyword
          */
-        takeLatest(Action.Types.SEARCH_KEYWORD, function* (action) {
-            const result = yield call(API.searchKeyword, action.payload);
+        takeLatest(Action.Types.SEARCH_KEYWORD, function* ({keyword}) {
+            const result = yield call(API.searchKeyword, keyword);
             // console.log('@@ result', result); // error, request error 처리
             yield put(photosCreators.updateState({searchResult: result.data}))
         }),
@@ -54,7 +54,10 @@ export default function* () {
             if (collectionPhotosHasMore) {
                 yield put(photosCreators.updateState({fetchLoader: true}))
                 const result = yield call(API.fetchCollectionPhotos, id, collectionPhotosNextPage, collectionPhotosPerPage); // error, request error 처리
-                yield put(photosCreators.updateState({fetchLoader: false, collectionPhotos: collectionPhotos.concat(result.data)}));
+                yield put(photosCreators.updateState({
+                    fetchLoader: false,
+                    collectionPhotos: collectionPhotos.concat(result.data)
+                }));
 
                 let headerLinks = result.headers.link.split(', ');
                 let last = headerLinks.filter(item => item.includes('last'))[0].split('; ')[0]; // <https://api.unsplash.com/photos?page=19375&per_page=10>

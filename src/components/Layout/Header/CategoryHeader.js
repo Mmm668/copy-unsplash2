@@ -13,9 +13,6 @@ const CategoryHeader = (props) => {
     return (
         <Wrapper>
             <LinkerWrap className={'no-scroll'}>
-                <Linker to={'/random'}>
-                    <LinkerText>Random</LinkerText>
-                </Linker>
                 <Linker to={'/collection'}>
                     <LinkerText>collections</LinkerText>
                 </Linker>

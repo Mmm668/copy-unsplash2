@@ -1,11 +1,13 @@
+import {photosCreators} from "../actionCreators";
+
 const initialState = {
     fetchLoader : true,
+    selectedPhoto: undefined,
 
     photos: [],
     photosHasMore: true,
     photosNextPage: 1, // start from 1 (related to saga put)
     photosPerPage: 10,
-    selectedPhoto: undefined,
 
     keyword: '',
     selectedSearchTab: 'photos',
@@ -43,14 +45,15 @@ export const Action = {
         fetchPhotos: () => ({
             type: Action.Types.FETCH_PHOTOS,
         }),
-        selectPhoto: (item, pivot) => ({
+        selectPhoto: (list, item, pivot) => ({
             type: Action.Types.SELECT_PHOTO,
+            list,
             item,
             pivot
         }),
-        searchKeyword: (payload) => ({
+        searchKeyword: (keyword) => ({
             type: Action.Types.SEARCH_KEYWORD,
-            payload
+            keyword
         }),
         fetchCollection: (payload) => ({
             type: Action.Types.FETCH_COLLECTION,
@@ -70,29 +73,22 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload
             };
-        case Action.Types.SELECT_PHOTO:
-            // state.photos[index + pivot(-1, +1, +0)] // photo.length < x >= 0
-            let currentIndex = state.photos.findIndex(photo => photo.id === action.item.id)
-            console.log('@@ exe in SelectPhoto', currentIndex);
-            if (currentIndex - 1 >= 0 && currentIndex + 1 < state.photos.length) {
-                return {
-                    ...state,
-                    selectedPhoto: {
-                        indexPosition: '',
-                        currentIndex: currentIndex,
-                        ...state.photos[currentIndex + action.pivot]
-                    }
-                }
-            } else {
-                return {
-                    ...state,
-                    selectedPhoto: {
-                        indexPosition: currentIndex - 1 < 0 ? 'first' : 'last',
-                        currentIndex: currentIndex,
-                        ...state.photos[currentIndex]
-                    }
-                }
-            }
+        // case Action.Types.SELECT_PHOTO:
+        //     // state.photos[index + pivot(-1, +1, +0)] // photo.length < x >= 0
+        //     const { list, item, pivot } = action;
+        //
+        //     let startIndex = list.findIndex(photo => photo.id === item.id)
+        //     let isInnerItem = startIndex > 0 && startIndex < list.length -1;
+        //     let indexPosition = isInnerItem? '' :  startIndex - 1 === -1 ? 'first' : 'last';
+        //     let newItem = isInnerItem ? list[startIndex + 1*pivot] : list[startIndex]
+        //
+        //     return {
+        //         ...state,
+        //         selectedPhoto: {
+        //             indexPosition: indexPosition,
+        //             ...newItem
+        //         }
+        //     }
         case Action.Types.CLEAR_STORE:
             return initialState;
         default:

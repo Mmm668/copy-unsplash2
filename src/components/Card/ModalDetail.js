@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled, {css} from "styled-components";
 import HalfWrap from "../HalfWrap/HalfWrap";
 import LeftWrap from "../HalfWrap/LeftWrap";
@@ -16,30 +16,50 @@ import ButtonWrap from "../Button/ButtonWrap";
 import Button from "../Button";
 import {photosCreators} from "../../redux/actionCreators";
 
-const ModalDetail = ({item}) => {
+function getNextItem(list, item, pivot) {
+    let index = list.findIndex(photo => photo.id === item.id)
+    let isInnerRange = index > 0 && index < list.length - 1;
+    let nextIndex = isInnerRange ? index + 1 * pivot : index;
+    let res;
+    res = {
+        indexPosition: isInnerRange? '' : index - 1 < 0 ? 'start' : 'last',
+        ...list[nextIndex]
+    }
+    return res;
+}
 
-    useEffect(()=>{
+const ModalDetail = ({list, item}) => {
+
+    const [modalContent, setModalContent] = useState(item);
+
+    useEffect(() => {
         document.body.classList.add("prevent-double-scroll");
 
         document.addEventListener('keyup', modalKeyListener);
+
         function modalKeyListener(e) {
             if (e.key === 'Escape' || e.keyCode === 27) {
                 photosCreators.updateState({selectedPhoto: undefined})
             }
-            if (e.keyCode === 37) { // left 37
-                console.log('@@ 외녹ㅉ');
-                photosCreators.selectPhoto(item, -1);
-            }
-            if(e.keyCode === 39){ // right 39
-                console.log('@@ 오른족');
-                photosCreators.selectPhoto(item, +1);
-            }
+            // if (e.keyCode === 37) { // left 37
+            //     // console.log('@@ 왼쪽');
+            //     // photosCreators.selectPhoto(list, item, -1);
+            //     setModalContent(getNextItem(list, modalContent, -1))
+            //
+            // }
+            // if(e.keyCode === 39){ // right 39
+            //     // console.log('@@ 오른족');
+            //     // photosCreators.selectPhoto(list, item, +1);
+            //     setModalContent(getNextItem(list, modalContent, 1))
+            // }
         }
-        return() => {
+
+        return () => {
             document.body.classList.remove("prevent-double-scroll");
-            // document.removeEventListener('keyup', modalKeyListener);
+            document.removeEventListener('keyup', modalKeyListener);
         }
-    },[])
+    }, [])
+
 
     return (
         <Wrapper>
@@ -47,18 +67,18 @@ const ModalDetail = ({item}) => {
                 <ButtonClose onClick={() => photosCreators.updateState({selectedPhoto: undefined})}>
                     <VscChromeClose/>
                 </ButtonClose>
-                <ButtonTo side={'left'} disabled={item.indexPosition === 'first'}>
-                    <HiOutlineChevronLeft/>
-                </ButtonTo>
-                <ButtonTo side={'right'} disabled={item.indexPosition === 'last'}>
-                    <HiOutlineChevronRight/>
-                </ButtonTo>
+                {/*<ButtonTo side={'left'} disabled={item.indexPosition === 'first'}>*/}
+                {/*    <HiOutlineChevronLeft/>*/}
+                {/*</ButtonTo>*/}
+                {/*<ButtonTo side={'right'} disabled={item.indexPosition === 'last'}>*/}
+                {/*    <HiOutlineChevronRight/>*/}
+                {/*</ButtonTo>*/}
 
                 <ContentWrap>
                     <HalfWrap>
                         <LeftWrap>
-                            <UserBadge src={item.user.profile_image.small} name={item.user.name}
-                                       sub={`@${item.user.id}`}/>
+                            <UserBadge src={modalContent.user.profile_image.small} name={modalContent.user.name}
+                                       sub={`@${modalContent.user.id}`}/>
                         </LeftWrap>
                         <RightWrap>
                             <ButtonWrap gutter={8}>
@@ -67,7 +87,7 @@ const ModalDetail = ({item}) => {
                                 <Button filled={'#3cb46e'}
                                         opacity={1}
                                         as={'a'}
-                                        href={item.links.download}
+                                        href={modalContent.links.download_location}
                                         download>
                                     Download free
                                 </Button>
@@ -75,7 +95,7 @@ const ModalDetail = ({item}) => {
                         </RightWrap>
                     </HalfWrap>
                     <ImageWrap>
-                        <Image src={item.urls.regular}/>
+                        <Image src={modalContent.urls.regular}/>
                     </ImageWrap>
                     <HalfWrap>
                         {/*<LeftWrap></LeftWrap>*/}

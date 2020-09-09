@@ -7,9 +7,6 @@ import {photosCreators} from "../../../redux/actionCreators";
 import Loading from "../../../components/Loading/Loading";
 import UserBadge from "../../../components/UserBadge";
 import PageTitle from "../../../components/PageTitle";
-import {navigate} from "../../../helpers/HistoryHelper";
-import InfiniteScroll from "../../../components/InfiniteScroll/InfiniteScroll";
-import Footer from "../../../components/Layout/Footer";
 
 const Collection = (props) => {
 

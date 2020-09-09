@@ -9,10 +9,10 @@ import LeftWrap from "../HalfWrap/LeftWrap";
 import RightWrap from "../HalfWrap/RightWrap";
 import {photosCreators} from "../../redux/actionCreators";
 
-const Card = ({item}) => {
+const Card = ({list, item, index}) => {
 
     return (
-        <Wrapper className={'masonry-item'} onClick={() => photosCreators.selectPhoto(item, 0)}>
+        <Wrapper className={'masonry-item'} onClick={() => photosCreators.updateState({selectedPhoto: item})}>
             <Image src={item.urls.small}/>
 
             <Screen>
@@ -74,7 +74,7 @@ const Screen = styled.div`
 const Wrapper = styled.div`
   position: relative;
   width: 375px;
-  margin: 10px 0;
+  margin: 12px 0;
   cursor:pointer;
   &:hover{
     ${Screen} {

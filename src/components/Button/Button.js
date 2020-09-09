@@ -11,10 +11,11 @@ const Button = (props) => {
         fullWidth,
         opacity,
         fontSize,
+        _,
     } = props;
 
     return (
-        <Wrapper color={color}  opacity={opacity} filled={filled} fullWidth={fullWidth} onClick={onClick}>
+        <Wrapper color={color} opacity={opacity} filled={filled} fullWidth={fullWidth} onClick={onClick} {..._}>
             {icon}
             <Text filled={filled} fontSize={fontSize}>
                 {children}
