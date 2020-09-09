@@ -2,10 +2,10 @@ import React from 'react';
 import styled, {keyframes} from "styled-components";
 import {AiOutlineLoading} from "react-icons/all";
 
-const Loading = (props) => {
+const Loading = ({style}) => {
 
     return (
-        <Wrapper>
+        <Wrapper style={style}>
             <Icon size={30} color={"#d0d0d0"}/>
         </Wrapper>
     )

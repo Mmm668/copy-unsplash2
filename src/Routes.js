@@ -17,7 +17,8 @@ const Routes = (props) => {
     const location = useLocation();
 
     useEffect(()=>{
-        photosCreators.clearStore() // keyword...
+        // reset some store
+        photosCreators.updateState({keyword: ''}) // keyword...
     },[location])
 
     return (
