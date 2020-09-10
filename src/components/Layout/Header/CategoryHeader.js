@@ -1,13 +1,17 @@
-import React from 'react';
-import styled from "styled-components";
+import React, {useEffect, useState} from 'react';
+import styled, {css} from "styled-components";
 import {photosCreators} from "../../../redux/actionCreators";
 import {navigate} from "../../../helpers/HistoryHelper";
+import {useHistory} from "react-router-dom";
 
 const CategoryHeader = (props) => {
 
     const {
         list
     } = props;
+
+    const history = useHistory();
+    const [id, setId] = useState(history.location.pathname.split('/')[2]);
 
     return (
         <Wrapper>
@@ -17,8 +21,9 @@ const CategoryHeader = (props) => {
                 </Linker>
                 <Bar/>
                 {
-                    list.map((item, index) => <Linker
+                    list.map((item, index) => <Linker isActive={item.id === id}
                         onClick={() => {
+                            setId(item.id)
                             photosCreators.updateState({selectedCollectionId: item.id})
                             navigate(`/collections/${item.id}/photos`)
                         }}
@@ -60,26 +65,32 @@ const LinkerWrap = styled.div`
   white-space: nowrap;
 `;
 
+const LinkerText = styled.div`
+  line-height: 53px;
+  border-bottom: 3px solid transparent;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+  color:#111;
+  cursor:pointer;
+  &:hover{
+    border-color:#000;
+  }
+`;
+
 const Linker = styled.div`
   opacity: 0.6;
   display: inline-flex;
   align-items: center;
   padding: 0 15px;
   transition: 0.2s ease-in-out;
+  ${props => props.isActive && css`
+    opacity: 1;
+    ${LinkerText} {
+      border-color:#000;
+    }
+  `}
 `;
-const LinkerText = styled.div`
-  line-height: 53px;
-  border-bottom: 2px solid transparent;
-  text-transform: capitalize;
-  font-size: 16px;
-  font-weight: 600;
-  color:#111;
-  cursor:pointer;
-  &:hover, .is-active{
-    border-color:#000;
-  }
-`;
-
 const Bar = styled.div`
   display: inline-flex;
   width: 1px;

@@ -13,7 +13,7 @@ const Layout = (props) => {
     function getHeight(dom) {
         // return instead of 118px
         if (something) {
-            return {paddingTop: '116px'};
+            return {paddingTop: '115px'};
         }
         return {paddingTop: '0px'};
     }
