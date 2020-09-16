@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, {css} from "styled-components";
+import Images from "../../../assets/image";
 
 const Thumbnail = ({style, list}) => {
 
@@ -7,11 +8,11 @@ const Thumbnail = ({style, list}) => {
         <Wrapper style={style}>
             {/*urls.small*/}
             <MainWrap>
-                <Item src={list[0].urls.small}/>
+                <Item src={list[0]?.urls.small || Images.defaultImage}/>
             </MainWrap>
             <SubWrap>
-                <Item src={list[1].urls.small}/>
-                <Item src={list[2].urls.small}/>
+                <Item src={list[1]?.urls.small || Images.defaultImage}/>
+                <Item src={list[2]?.urls.small || Images.defaultImage}/>
             </SubWrap>
             <div style={{display: 'flex', flexDirection: 'column'}}>
 
@@ -32,7 +33,7 @@ const Wrapper = styled.div`
 const Item = styled.div`
   display: inline-flex;
   ${props => props.src && css`
-     background-image:url(${props.src});
+     background-image:url(${props.src} );
   `};
   background-size: cover;
   background-repeat: no-repeat;

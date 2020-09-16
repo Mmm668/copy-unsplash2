@@ -75,6 +75,6 @@ const Wrapper = styled.div`
 `;
 
 const Head = styled.div`
-  padding: 60px 15px 72px;
+  padding: 2.7rem 1rem 2.3rem;//60px 15px 72px;
 `;
 export default Search;
